@@ -1,0 +1,12 @@
+.div.center-align
+  = image_tag('ozone-fit-website-logo', class: 'responsive-img')
+  .row
+    .card.col.s12.m8.offset-m2
+      .card-content.transparent
+        .video-container
+          %iframe{:allowfullscreen => "", :frameborder => "0",:src => "https://www.youtube.com/embed/aCewnjtoKGQ?autoplay=1"}
+      .card-action
+        %button.btn.waves-effect.modal-trigger.ozone-button{data: {target: "lead_modal"}} Get More Info
+        = link_to 'Login', new_user_session_path, class: 'btn waves-effect ozone-button', method: :get
+
+= render(partial: 'lead_modal')

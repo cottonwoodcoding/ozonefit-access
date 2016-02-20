@@ -1,0 +1,1 @@
+json.(@workout_time, :date, :time)

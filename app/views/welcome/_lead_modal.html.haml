@@ -1,0 +1,15 @@
+#lead_modal.modal.modal-fixed-footer
+  = form_for @lead do |f|
+    .modal-content
+      %h4 Info Request
+      - @lead.attributes.keys.delete_if{|key| key == 'id' || key == 'created_at' || key == 'updated_at'}.each do |attr_key|
+        .input_field
+          = f.label attr_key.to_sym
+          %br
+          - if attr_key == 'body'
+            = f.text_area attr_key.to_sym, class: 'materialize-textarea', required: true
+          - else
+            = f.text_field attr_key.to_sym, required: true
+    .modal-footer
+      %button.btn.ozone-button.waves-effect{type: 'submit', data: {disable_with: 'Sending...'}} Send
+      = link_to 'Close', '#', class: 'btn grey waves-effect modal-close small-right'

@@ -1,0 +1,16 @@
+%h2.center-align Log in
+%hr
+  .row
+    = form_for(resource, as: resource_name, url: session_path(resource_name), class: 'col s12') do |  f|
+      .row
+        .input-field.col.s12.m6.offset-m3
+          = f.label :email
+          %br/
+          = f.email_field :email, autofocus: true
+        .input-field.col.s12.m6.offset-m3
+          = f.label :password
+          %br/
+          = f.password_field :password, autocomplete: "off"
+        .actions
+          = f.submit "Log in", class: 'btn ozone-button darken-1 col s2 offset-s5'
+    = render "devise/shared/links"

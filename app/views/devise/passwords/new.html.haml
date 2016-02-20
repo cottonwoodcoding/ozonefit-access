@@ -1,0 +1,13 @@
+%h2.center-align Forgot your password?
+%hr
+  .row
+    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post   }) do |f|
+      .row
+        = devise_error_messages!
+        .input-field.col.s6.offset-s3
+          = f.label :email
+          %br/
+          = f.email_field :email, autofocus: true
+        .actions.center-align
+          = f.submit "Send me reset password instructions", class: 'btn ozone-button darken-1'
+    = render "devise/shared/links"

@@ -1,0 +1,71 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %link{:href => "http://fonts.googleapis.com/icon?family=Material+Icons", :rel => "stylesheet"}/
+    %title O.ZoneFit Access
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application'
+    = favicon_link_tag 'favicon.ico'
+    = csrf_meta_tags
+  %body
+    %nav.white
+      %ul#dropdown1.dropdown-content
+        - if user_signed_in?
+          - if current_user.admin && params[:controller] != 'admin'
+            %li
+              = link_to 'Admin', admin_path, class: 'ozone-text'
+          - unless params[:controller] == 'profile'
+            %li
+              = link_to 'Profile', profile_path(current_user.id), class: 'ozone-text'
+          %li
+            = link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'ozone-text'
+      .nav-wrapper
+        %a.brand-logo.ozone-text{:href => root_path}
+          %img.responsive-img{src: image_path('ozone-fit-website-logo'), width: "200px"}
+        %a.button-collapse.ozone-text{"data-activates" => "mobile-demo", :href => root_path}
+          %i.material-icons menu
+        %ul.right.hide-on-med-and-down
+          - if user_signed_in?
+            %li
+              = link_to 'Today', root_path, class: 'ozone-text'
+            %li
+              = link_to 'Trainers', '#', class: 'ozone-text'
+            %li
+              = link_to 'Leaderboards', '#', class: 'ozone-text'
+            %li
+              = link_to 'Nutrition', nutrition_index_path, class: 'ozone-text'
+            %li
+              = link_to 'O.Zone Challenge', challenge_path, class: 'ozone-text'
+            %li
+              %a.dropdown-button.ozone-text{href: "#!", data: {activates:"dropdown1"}}
+                = current_user.name
+                %i.material-icons.right
+                  arrow_drop_down
+        %ul#mobile-demo.side-nav
+          - if user_signed_in?
+            %li
+              = link_to 'Today', root_path, class: 'ozone-text'
+            %li
+              = link_to 'Trainers', '#', class: 'ozone-text'
+            %li
+              = link_to 'Leaderboards', '#', class: 'ozone-text'
+            %li
+              = link_to 'Nutrition', nutrition_index_path, class: 'ozone-text'
+            %li
+              = link_to 'Leaderboards', '#', class: 'ozone-text'
+            %li
+              = link_to 'O.Zone Challenge', challenge_path, class: 'ozone-text'
+            - if current_user.admin && params[:controller] != 'admin'
+              %li
+                = link_to 'Admin', admin_path, class: 'ozone-text'
+            - unless params[:controller] == 'profile'
+              %li
+                = link_to 'Profile', profile_path(current_user.id), class: 'ozone-text'
+            %li
+              = link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'ozone-text'
+
+    = render :partial => "shared/bflash"
+    #flash-message
+    = yield

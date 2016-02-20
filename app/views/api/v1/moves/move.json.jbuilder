@@ -1,0 +1,1 @@
+json.(@move, :id, :name, :url)

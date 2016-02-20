@@ -1,0 +1,5 @@
+%div{:class => "center-align"}
+  %h3 Admin Actions
+  %a{:class => "btn ozone-button", :href => "/"} Dashboard
+  %hr/
+= react_component('Admin', {current_user: current_user})

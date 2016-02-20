@@ -1,0 +1,70 @@
+%html
+  %head
+    %meta{:charset => "utf-8"}/
+    %title User Upload Completed!
+    %meta{:content => "width=device-width", :name => "viewport"}/
+    :css
+      @media screen and (max-width: 600px) {
+        .width-full {
+          width: 100% !important;
+        }
+        .stack-cell {
+          display: block !important;
+          width: 100% !important;
+        }
+      }
+
+      @media screen and (max-width: 320px) {
+
+        .email-title {
+          font-size: 20px !important;
+          line-height: 30px !important;
+          padding-top: 15px !important; }
+
+        .email-intro {
+          font-size: 14px !important;
+          line-height: 21px !important; }
+
+      }
+
+      @media screen and (min-width: 321px) and (max-width: 375px) {
+
+        .email-title {
+          font-size: 22px !important;
+          line-height: 36px !important; }
+
+      }
+
+      .client-link a {
+        color: #3a383a !important;
+      }
+
+    /[if gte mso 12]
+      <style>
+      td {
+      mso-line-height-rule: exactly; }
+      </style>
+  %body{:style => "margin: 0; padding: 0;"}
+    %table{:border => "0", :cellpadding => "0", :cellspacing => "0", :style => "background-color: #e4c59a; background-image: url('https://s3-us-west-1.amazonaws.com/ofitaccess/blue-gradient-background.png');", :width => "100%"}
+      %tr
+        %td{:style => "padding: 0 10px;"}
+          %table.width-full{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0", :width => "650"}
+            %tr{style: "display: inline-block;"}
+              %td
+                %img{:alt => "Track Train | Exposure Tracker", :src => "#{attachments['logo.png'].url}", :style => "padding: 3px; display: block; max-width: 100%;", :width => "140"}/
+              %td.email-title{:style => "padding-left: 20px; text-align: center; color: white; font-family: Georgia, serif; font-size: 25px; font-weight: bold; line-height: 44px; text-transform: uppercase;"}
+                You've been added to Ozonefit Access.
+              %tr
+                %td
+                  %hr
+              %tr
+                %td{:style => "color: white; font-family: Georgia, serif; font-size: 18px; line-height: 27px; padding-top: 5px;"}
+                  Login Details:
+                %tr
+                  %td.email-intro{:style => "color: white; font-family: Georgia, serif; font-size: 18px; line-height: 27px; padding-top: 5px;"}
+                    %ul
+                      %li
+                        = "Your login name is: #{@email}"
+                    %h4.white-text
+                      Finish setting up your account by clicking:
+                      %a{href: "#{ENV['app_url']}/users/password/edit?initial=true&reset_password_token=#{@password_token}", target: '_blank'} Ozonefit Access
