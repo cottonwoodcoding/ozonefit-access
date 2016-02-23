@@ -10,18 +10,22 @@ class Leaderboard extends React.Component {
         let key = `leader-${leader.id}-${index}`;
         index = index + 1;
         return(<div key={key} className='row'>
-          <div className='col m4 hide-on-small-only'>
+          <div className='col m3 hide-on-small-only'>
             <p>
-              <img src={leader.profile_url} alt="Profile Image" className="circle responsive-img" />
+              <img src={leader.profile_url} alt="Profile Image" className="circle responsive-img leaderboard-avatar" />
             </p>
           </div>
-          <div className='col s6 m4'>
+          <div className='col s4 m3'>
             <h5 className="bold">Name</h5>
             <h5>{leader.name}</h5>
           </div>
-          <div className='col s6 m4'>
+          <div className='col s4 m3'>
             <h5 className="bold">Time</h5>
             <h5>{leader.time}</h5>
+          </div>
+          <div className='col s4 m3'>
+            <h5 className="bold">OZF</h5>
+            <h5>{leader.ozf}</h5>
           </div>
         </div>);
       });

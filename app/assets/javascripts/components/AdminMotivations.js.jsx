@@ -57,6 +57,7 @@ class AdminMotivations extends React.Component {
                <input type='text' placeholder="Motivation Text" ref="motivationText" required />
                <button type='submit' className='btn ozone-button'>Add</button>
              </form>
+             <br />
            </div>);
   }
 

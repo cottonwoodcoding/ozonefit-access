@@ -42,7 +42,7 @@ class Move extends React.Component {
     if(this.state.edit) {
       let move = this.props.move;
 
-      return(<div className='col s12'>
+      return(<div className='col s12 m4'>
                <form onSubmit={(e) => this.editMove(e, move.id)}>
                  <div className='card blue-grey darken-1'>
                    <div className='card-content white-text'>
@@ -80,11 +80,10 @@ class Move extends React.Component {
     if(!this.state.edit) {
       let move = this.state.move;
 
-      return(<div className='col s12'>
+      return(<div className='col s12 m4'>
              <div className="card blue-grey darken-1">
                <div className='card-content white-text'>
                  <span className='card-title'>{move.name}</span>
-                 <p className='truncate'>{move.url}</p>
                </div>
                <div className='card-action'>
                  <a href="#" className='btn ozone-button' onClick={this.setEdit}>

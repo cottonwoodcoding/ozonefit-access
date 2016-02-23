@@ -5,6 +5,7 @@ class SoundCloud extends React.Component {
     this.edit = this.edit.bind(this);
     this.delete = this.delete.bind(this);
     this.display = this.display.bind(this);
+    this.toggleEdit = this.toggleEdit.bind(this);
   }
 
   edit() {
@@ -30,19 +31,27 @@ class SoundCloud extends React.Component {
     });
   }
 
+  toggleEdit() {
+    this.setState({edit: !this.state.edit});
+  }
+
   display() {
     if(!this.state.edit) {
-      return(<div className='card' onClick={() => this.setState({edit: !this.state.edit})}>
-                 <div className='col s12 m4 center'>
+      return(<div className='card col s12 m4 blue-grey darken-1'>
+               <div className='card-content white-text'>
+                 <span className='card-title'>
                    {this.state.sound_cloud.name}
-                 </div>
-                 <div className='col s12 m4 truncate center'>
-                   {this.state.sound_cloud.url}
-                 </div>
-                 <div className='col s12 m4 center'>
-                   <button onClick={this.delete} className='btn red white-text'>Delete</button>
-                 </div>
-               </div>);
+                 </span>
+               </div>
+               <div className='card-action'>
+                 <a href="#" className='btn ozone-button' onClick={this.toggleEdit}>
+                   <i className='fa fa-edit' />
+                 </a>
+                 <a href="#" className='btn red white-text' onClick={(e) => this.delete}>
+                   <i className='fa fa-trash' />
+                </a>
+              </div>
+             </div>);
     } else {
       return(<div className='card'>
                  <div className='col s12 m4'>

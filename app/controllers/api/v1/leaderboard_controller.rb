@@ -8,7 +8,7 @@ class Api::V1::LeaderboardController < ApiController
     end
     top_workout_times.each do |twt|
       user = twt.user
-      leaders << {id: user.id, profile_url: user.profile.avatar.url(:thumb), time: twt.formatted_time, name: user.name}
+      leaders << {id: user.id, profile_url: user.profile.avatar.url, time: twt.formatted_time, name: user.name, ozf: twt.ozf.to_s.titleize}
     end
     render json: {leaders: leaders}
   end

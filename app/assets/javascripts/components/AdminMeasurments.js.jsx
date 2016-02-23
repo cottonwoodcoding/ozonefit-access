@@ -40,12 +40,10 @@ class AdminMeasurements extends React.Component {
       type: 'POST',
       data: {user_id: this.state.measurmentUser, 
              measurement: {weight: this.refs.weight.value, chest: this.refs.chest.value,
-                           right_bicep: this.refs.rightBicep.value, left_bicep: this.refs.leftBicep.value, 
-                           neck: this.refs.neck.value, waist: this.refs.waist.value,
-                           right_thigh: this.refs.rightThigh.value, left_thigh: this.refs.leftThigh.value,
-                           right_calf: this.refs.rightCalf.value, left_calf: this.refs.leftCalf.value, 
-                           fat_percent: this.refs.fat.value, notes: this.refs.notes.value,
-                           ozone_challenge: this.refs.ozoneChallenge.value}}
+                           left_bicep: this.refs.leftBicep.value, neck: this.refs.neck.value, 
+                           waist: this.refs.waist.value, left_thigh: this.refs.leftThigh.value,
+                           left_calf: this.refs.leftCalf.value, fat_percent: this.refs.fat.value, 
+                           notes: this.refs.notes.value}}
     }).success(data => {
       this.refs.userSelect.selectedIndex = 0;
       this.setState({measurementUser: null, alert: 'Measurement Added Successfully'});
@@ -59,22 +57,12 @@ class AdminMeasurements extends React.Component {
       return(<form onSubmit={this.submitMeasurement}>
                <div className='row'>
                  <div className='input-field'>
-                    <input type='text' ref='ozoneChallenge' placeholder='Ozone Challenge Time - 01:30' pattern="\d\d:\d\d" required='true' />
-                 </div>
-               </div>
-               <div className='row'>
-                 <div className='input-field'>
                    <input type='text' placeholder="Weight" ref="weight" />
                  </div>
                </div>
                <div className='row'>
                  <div className='input-field'>
                    <input type='text' placeholder="Chest" ref="chest" />
-                 </div>
-               </div>
-               <div className='row'>
-                 <div className='input-field'>
-                   <input type='text' placeholder="Right Bicep" ref="rightBicep" />
                  </div>
                </div>
                <div className='row'>
@@ -94,17 +82,7 @@ class AdminMeasurements extends React.Component {
                </div>
                <div className='row'>
                  <div className='input-field'>
-                   <input type='text' placeholder="Right Thigh" ref="rightThigh" />
-                 </div>
-               </div>
-               <div className='row'>
-                 <div className='input-field'>
                    <input type='text' placeholder="Left Thigh" ref="leftThigh" />
-                 </div>
-               </div>
-               <div className='row'>
-                 <div className='input-field'>
-                   <input type='text' placeholder="Right Calf" ref="rightCalf" />
                  </div>
                </div>
                <div className='row'>

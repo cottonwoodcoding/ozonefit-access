@@ -31,13 +31,14 @@ class Users extends React.Component {
     $.ajax({
       url: '/api/v1/users',
       type: 'POST',
-      data: {user: {first_name: this.refs.firstName.value, last_name: this.refs.lastName.value, email: this.refs.email.value}}
+      data: {user: {first_name: this.refs.firstName.value.trim(), last_name: this.refs.lastName.value.trim(), email: this.refs.email.value.trim(), phone: this.refs.phone.value.trim()}}
     }).success(data => {
       let users = this.state.users;
       users.push(data);
       this.refs.firstName.value = '';
       this.refs.lastName.value = '';
       this.refs.email.value = '';
+      this.refs.phone.value = '';
       this.setState({users: users});
     }).error(data => {
       console.log(data);
@@ -64,8 +65,10 @@ class Users extends React.Component {
                  <input type='text' ref='firstName' placeholder='First Name' required='true' />
                  <input type='text' ref='lastName' placeholder='Last Name' required='true' />
                  <input type='text' ref='email' placeholder='Email' required='true' />
+                 <input type='text' ref='phone' placeholder='Phone' required='true' />
                  <button type='submit' className='btn ozone-button'>Add</button>
                </div>
+               <br />
              </form>);
     }
   }
@@ -96,6 +99,7 @@ class Users extends React.Component {
                </div>
                {this.addUserForm()}
                <div className='row'>
+                 <h5 className='center'>User Search</h5>
                  <input type='text' placeholder='Search Users' onChange={(e) => this.searchUsers(e.currentTarget.value)} />
                </div>
                <div className='row card'>

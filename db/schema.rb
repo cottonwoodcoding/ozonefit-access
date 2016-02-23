@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160220192157) do
+ActiveRecord::Schema.define(version: 20160223214437) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,20 +61,16 @@ ActiveRecord::Schema.define(version: 20160220192157) do
   create_table "measurements", force: :cascade do |t|
     t.float    "weight"
     t.float    "chest"
-    t.float    "right_bicep"
     t.float    "left_bicep"
     t.float    "neck"
     t.float    "waist"
-    t.float    "right_thigh"
     t.float    "left_thigh"
-    t.float    "right_calf"
     t.float    "left_calf"
     t.float    "fat_percent"
-    t.integer  "ozone_challenge"
     t.text     "notes"
     t.integer  "user_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "motivations", force: :cascade do |t|
@@ -132,6 +128,7 @@ ActiveRecord::Schema.define(version: 20160220192157) do
     t.string   "last_name"
     t.boolean  "admin",                  default: false
     t.string   "workflow_state",         default: "active"
+    t.string   "phone"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -144,12 +141,13 @@ ActiveRecord::Schema.define(version: 20160220192157) do
   end
 
   create_table "workout_times", force: :cascade do |t|
-    t.date     "date",            default: '2016-02-20', null: false
-    t.integer  "time",            default: 0,            null: false
+    t.date     "date",            default: '2016-02-23', null: false
+    t.float    "time",            default: 0.0,          null: false
     t.integer  "user_id"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
-    t.boolean  "ozone_challenge"
+    t.boolean  "ozone_challenge", default: false
+    t.boolean  "ozf",             default: false
   end
 
   create_table "workouts", force: :cascade do |t|
@@ -158,6 +156,8 @@ ActiveRecord::Schema.define(version: 20160220192157) do
     t.integer  "rounds"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "ozf_time"
+    t.string   "name"
   end
 
 end

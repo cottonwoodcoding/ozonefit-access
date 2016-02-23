@@ -4,14 +4,16 @@ class Tab extends React.Component {
     this.callback = this.callback.bind(this);
   }
 
-  callback() {
+  callback(e = null) {
+    if(e)
+      e.preventDefault();
     if(this.props.callback)
       this.props.callback(this.props.callbackValue)
   }
 
   render() {
     return(<li className="tab col s3">
-             <a className='ozone-text truncate active' href='#' onClick={this.callback}>{this.props.text}</a>
+             <a className='ozone-text truncate active' href='#' onClick={(e) => this.callback(e)}>{this.props.text}</a>
            </li>);
   }
 }

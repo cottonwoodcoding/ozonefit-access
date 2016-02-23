@@ -34,14 +34,14 @@ class Api::V1::UsersController < ApplicationController
 
   def search
     term = params[:term]
-    @users = User.where('lower(first_name) ILIKE ? OR lower(last_name) ILIKE ? OR lower(email) ILIKE ?', "%#{term}%", "%#{term}%", "%#{term}%")
+    @users = User.where('lower(first_name) ILIKE ? OR lower(last_name) ILIKE ? OR lower(email) ILIKE ? OR lower(phone) ILIKE ?', "%#{term}%", "%#{term}%", "%#{term}%", "%#{term}%")
     @users = User.all if @users.count == 0
     render :index
   end
 
   private
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :workflow_state)
+      params.require(:user).permit(:first_name, :last_name, :email, :phone, :workflow_state)
     end
 
     def user

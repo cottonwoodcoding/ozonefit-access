@@ -28,7 +28,7 @@ class NewMove extends React.Component {
              <select className='browser-default col s12 m6' required='true' ref='moveId'>
                {moveOptions}
              </select>
-             <input className='col s12 m6' type='text' placeholder='Reps' ref='reps' onChange={this.sendMove} />
+             <input className='col s12 m6' type='text' placeholder='Reps' ref='reps' required='true' onChange={this.sendMove} />
            </div>);
   }
 }

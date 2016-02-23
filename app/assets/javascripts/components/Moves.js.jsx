@@ -73,8 +73,8 @@ class Moves extends React.Component {
                  <input type='text' required='true' placeholder='Move URL' ref='moveUrl' />
                  <button type='submit' className='btn ozone-button'>Add</button>
                </form>
-               <h5 className='center'>Moves</h5>
-               <hr />
+               <br />
+               <h5 className='center'>Moves Search</h5>
                <input type='text' ref='moveQuery' placeholder='Search Moves' onChange={this.searchMoves} />
                {this.displayMoves()}
              </div>);

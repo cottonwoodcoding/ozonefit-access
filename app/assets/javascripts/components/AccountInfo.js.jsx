@@ -16,8 +16,11 @@ class AccountInfo extends React.Component {
             </div>
           </div>
           <div className="row">
-            <div className="input-field col s12">
+            <div className="input-field col s12 m6">
               <input id="email" autoFill="off" type="email" placeholder="Email" ref="email" defaultValue={this.props.user.email} />
+            </div>
+            <div className="input-field col s12 m6">
+              <input id="phone" autoFill="off" type="text" placeholder="Phone" ref="phone" defaultValue={this.props.user.phone} />
             </div>
           </div>
           <div className="row">

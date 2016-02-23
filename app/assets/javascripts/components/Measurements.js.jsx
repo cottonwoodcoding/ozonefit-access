@@ -31,17 +31,13 @@ class Measurements extends React.Component{
         <table className="highlight striped responsive-table">
           <thead className="white">
             <tr>
-              <th>Ozone Challenge Time</th>
               <th>Measurement Date</th>
               <th>Weight</th>
               <th>Body Fat Percentage</th>
               <th>Waist</th>
-              <th>Right Bicep</th>
               <th>Left Bicep</th>
-              <th>Right Thigh</th>
               <th>Left Thigh</th>
               <th>Waist</th>
-              <th>Right Calf</th>
               <th>Left Calf</th>
               <th>Chest</th>
               <th>Neck</th>

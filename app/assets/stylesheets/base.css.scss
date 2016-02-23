@@ -138,3 +138,21 @@ html {
 .workout-moves {
   margin-top: 0px !important;
 }
+
+.pointer {
+  cursor: pointer;
+}
+
+.leaderboard-container {
+  height: 150px;
+}
+
+.moves-container {
+  max-height: 305px;
+  overflow: scroll;
+}
+
+.leaderboard-avatar {
+  width: 100px;
+  height: 100px;
+}

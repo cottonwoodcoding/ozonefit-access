@@ -4,11 +4,11 @@
     = form_for(resource, as: resource_name, url: session_path(resource_name), class: 'col s12') do |  f|
       .row
         .input-field.col.s12.m6.offset-m3
-          = f.label :email
+          = f.label :email, class: 'active'
           %br/
           = f.email_field :email, autofocus: true
         .input-field.col.s12.m6.offset-m3
-          = f.label :password
+          = f.label :password, class: "active"
           %br/
           = f.password_field :password, autocomplete: "off"
         .actions

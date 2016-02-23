@@ -10,6 +10,7 @@ class StopWatch extends React.Component {
     this.completed = this.completed.bind(this);
     this.clearWatch = this.clearWatch.bind(this);
     this.timerButtons = this.timerButtons.bind(this);
+    this.validateTime = this.validateTime.bind(this);
   }
 
   getSeconds() {
@@ -29,14 +30,30 @@ class StopWatch extends React.Component {
     }, 1000)
   }
 
+  validateTime(time) {
+    let valid;
+    $.ajax({
+      url: '/api/v1/validate_time',
+      type: 'GET',
+      async: false,
+      data: {workout_id: this.props.workout.id, time: time},
+      success: function(data) {
+        valid = data.valid;
+      },
+      error: function(data) {
+        console.log(data);
+      }
+    });
+    return valid;
+  }
+
   handleFinishClick() {
-    let submit = confirm('Finish And Submit Your Score?');
     let ozoneChallenge = this.props.ozoneChallenge ? true : false;
-    if(submit){
+    if(this.validateTime(this.state.secondsElapsed)){
       $.ajax({
         url: '/api/v1/log_workout',
         type: 'POST',
-        data: {workout_time: {time: this.state.secondsElapsed, ozone_challenge: ozoneChallenge}}
+        data: {workout_id: this.props.workout.id, workout_time: {time: this.state.secondsElapsed, ozone_challenge: ozoneChallenge}}
       }).success(data => {
         this.props.fetchLeaderboard();
         this.setState({completed: true, ...data});
@@ -45,7 +62,7 @@ class StopWatch extends React.Component {
       });
       this.clearWatch();
     } else {
-      return
+      alert('You cannot submit a time that is less than the minimum time.');
     }
   }
 
@@ -73,7 +90,7 @@ class StopWatch extends React.Component {
   timerButtons() {
     if(!this.state.timerRunning) {
       return(<p>
-               <button type="button" className='red white-text btn btn-large' onClick={this.handleStartClick}>Start Workout!</button>
+               <button type="button" className='red white-text btn btn-large' onClick={this.handleStartClick}>Start!</button>
              </p>);
     }
     if(this.state.timerRunning || this.state.secondsElapsed !== 0) {

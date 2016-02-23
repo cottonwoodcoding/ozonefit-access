@@ -46,10 +46,11 @@ class Api::V1::WorkoutsController < ApiController
     end
 
     def workout_params
-      params.require(:workout).permit(:min_time, :rounds)
+      params.require(:workout).permit(:min_time, :ozf_time, :rounds)
     end
 
     def parse_time
       params[:workout][:min_time] = TimeParser.string_to_minutes(params[:workout][:min_time])
+      params[:workout][:ozf_time] = TimeParser.string_to_minutes(params[:workout][:ozf_time])
     end
 end

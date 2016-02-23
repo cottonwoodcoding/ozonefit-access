@@ -2,7 +2,7 @@ class Api::V1::MotivationsController < ApplicationController
   before_action :motivation, only: [:update, :destroy]
 
   def index
-    @motivations = Motivation.all
+    @motivations = Motivation.all.order(:text)
   end
 
   def create

@@ -42,6 +42,7 @@ class Profile extends React.Component {
     this.refs.firstName.value = this.state.user.first_name;
     this.refs.lastName.value = this.state.user.last_name;
     this.refs.email.value = this.state.user.email;
+    this.refs.phone.value = this.state.user.phone;
   }
 
   saveAccountInfo(formData) {
@@ -65,7 +66,7 @@ class Profile extends React.Component {
     let passwordConfirmation = refs.passwordConfirm.value;
     let formData = {user: {first_name: refs.firstName.value.trim(),
                     last_name: refs.lastName.value.trim(),
-                    email: refs.email.value.trim()}};
+                    email: refs.email.value.trim(), phone: refs.phone.value.trim()}};
     if(password.length && passwordConfirmation.length) {
       formData.user.password = password;
       formData.user.password_confirmation = passwordConfirmation;

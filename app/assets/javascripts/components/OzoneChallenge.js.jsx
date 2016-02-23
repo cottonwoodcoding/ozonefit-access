@@ -47,7 +47,7 @@ class OzoneChallenge extends React.Component {
              <div className='row center'>
                <div className='col s12 m6 center'>
                  <div className='card workout-moves'>
-                   <WorkoutMoves fetchLeaderboard={this.fetchLeaderboard} workout={this.props.workout} workoutVideo={this.state.workoutVideoUrl} changeVideo={this.changeVideo} />
+                   <WorkoutMoves fetchLeaderboard={this.fetchLeaderboard} workout={this.props.workout} workout_min={this.props.workout_min} workout_ozf={this.props.workout_ozf} workoutVideo={this.state.workoutVideoUrl} changeVideo={this.changeVideo} />
                  </div>
                </div>
                <div className='col s12 m6'>

@@ -32,7 +32,7 @@ class Api::V1::MovesController < ApiController
 
   def destroy
     @move.destroy
-    @moves = Move.all
+    @moves = Move.all.order(:name)
     render :index
   end
 

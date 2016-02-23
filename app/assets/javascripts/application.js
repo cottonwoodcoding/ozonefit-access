@@ -16,4 +16,5 @@
 //= require react_ujs
 //= require components
 //= require materialize-sprockets
+//= require moment
 //= require_tree .

@@ -18,6 +18,7 @@ class User extends React.Component {
                  <div className="card-content white-text">
                    <span className="card-title truncate">{user.first_name} {user.last_name}</span>
                    <p>{user.email}</p>
+                   <p>{user.phone}</p>
                  </div>
                </div>
              </div>);
@@ -30,7 +31,7 @@ class User extends React.Component {
     $.ajax({
       url: this.state.user.url,
       type: 'PUT',
-      data: {user: {first_name: this.refs.firstName.value, last_name: this.refs.lastName.value, email: this.refs.email.value}}
+      data: {user: {first_name: this.refs.firstName.value.trim(), last_name: this.refs.lastName.value.trim(), email: this.refs.email.value.trim(), phone: this.refs.phone.value.trim()}}
     }).success(data => {
       this.setState({edit: false, user: data});
     }).error(data => {
@@ -96,6 +97,9 @@ class User extends React.Component {
                      </p>
                      <p>
                        <input type='email' required='true' defaultValue={user.email} ref='email' />
+                     </p>
+                     <p>
+                       <input type='text' required='true' defaultValue={user.phone} ref='phone' />
                      </p>
                    </div>
                    <div className='card-action'>

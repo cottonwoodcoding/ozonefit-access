@@ -42,7 +42,7 @@ class Workouts extends React.Component {
     if(this.state.workouts.length) {
       let workouts = this.state.workouts.map(workout => {
         let key = `workout-${workout.id}`;
-        return(<Workout key={key} workout={workout} deleteWorkout={this.deleteWorkout} />);
+        return(<Workout day={this.props.day} key={key} workout={workout} deleteWorkout={this.deleteWorkout} />);
       });
       return workouts;
     } else {
@@ -69,7 +69,7 @@ class Workouts extends React.Component {
     $.ajax({
       url: '/api/v1/days/'+this.props.day.id+'/workouts',
       type: 'POST',
-      data: {workout: {min_time: this.refs.workoutMinTime.value, rounds: this.refs.rounds.value}, moves: this.state.movesToAdd}
+      data: {workout: {min_time: this.refs.workoutMinTime.value, ozf_time: this.refs.workoutOzfTime.value, rounds: this.refs.rounds.value}, moves: this.state.movesToAdd}
     }).success(data => {
       let workouts = this.state.workouts;
       workouts.push(data);
@@ -82,9 +82,11 @@ class Workouts extends React.Component {
   addMove() {
     let movesToAdd = this.state.movesToAdd;
     let values = this.refs.selectedMove.value.split('-');
-    movesToAdd.push({id: values[0], name: values[1], reps: this.refs.reps.value});
-    this.refs.reps.value = '';
-    this.setState({movesToAdd: movesToAdd});
+    if(values.length == 2 && this.refs.reps.value.length) {
+      movesToAdd.push({id: values[0], name: values[1], reps: this.refs.reps.value});
+      this.refs.reps.value = '';
+      this.setState({movesToAdd: movesToAdd});
+    }
   }
 
   removeMove(moveId) {
@@ -157,12 +159,17 @@ class Workouts extends React.Component {
                <form className='col s12' onSubmit={this.addWorkout}>
                  <div className='row'>
                    <div className='input-field col s12'>
-                     <input type='text' ref='workoutMinTime' placeholder='Workout Min Time - 1:30' pattern="\d:\d\d" required='true' />
+                     <input type='text' ref='workoutMinTime' placeholder='Workout Min Time - 01:30' pattern="\d\d:\d\d" required='true' />
                    </div>
                  </div>
                  <div className='row'>
                    <div className='input-field col s12'>
-                     <input type='text' ref='rounds' placeholder='Workout Rounds' required='true' />
+                     <input type='text' ref='workoutOzfTime' placeholder='Workout Ozf Time - 10:00' pattern="\d\d:\d\d" required='true' />
+                   </div>
+                 </div>
+                 <div className='row'>
+                   <div className='input-field col s12'>
+                     <input type='number' ref='rounds' min='1' step='1' placeholder='Workout Rounds' required='true' />
                    </div>
                  </div>
                  <div className='row'>

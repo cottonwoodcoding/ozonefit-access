@@ -45,13 +45,13 @@ class Dashboard extends React.Component {
                  </div>
                </div>
                <div className='col s12 m6'>
-                 <StopWatch fetchLeaderboard={this.fetchLeaderboard} workoutVideo={this.state.workoutVideoUrl} changeVideo={this.changeVideo} finishMessage='Nice work! Keep checking the leaderboard to see if you finshed in the top 5 today!' />
+                 <StopWatch workout={this.props.workout} fetchLeaderboard={this.fetchLeaderboard} workoutVideo={this.state.workoutVideoUrl} changeVideo={this.changeVideo} finishMessage='Nice work! Keep checking the leaderboard to see if you finshed in the top 5 today!' />
                </div>
              </div>
              <div className='row center'>
                <div className='col s12 m6 center'>
                  <div className='card workout-moves'>
-                   <WorkoutMoves fetchLeaderboard={this.fetchLeaderboard} day={this.props.currentDay} workoutVideo={this.state.workoutVideoUrl} changeVideo={this.changeVideo} />
+                   <WorkoutMoves workout_min={this.props.workout_min} workout_ozf={this.props.workout_ozf} fetchLeaderboard={this.fetchLeaderboard} day={this.props.currentDay} workoutVideo={this.state.workoutVideoUrl} changeVideo={this.changeVideo} />
                  </div>
                </div>
                <div className='col s12 m6'>
