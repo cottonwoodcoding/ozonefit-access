@@ -17,4 +17,6 @@
 //= require components
 //= require materialize-sprockets
 //= require moment
+// VENDOR JAVASCRIPTS
+//= require date
 //= require_tree .

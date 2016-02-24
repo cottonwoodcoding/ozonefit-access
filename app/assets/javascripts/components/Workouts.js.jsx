@@ -42,7 +42,7 @@ class Workouts extends React.Component {
     if(this.state.workouts.length) {
       let workouts = this.state.workouts.map(workout => {
         let key = `workout-${workout.id}`;
-        return(<Workout day={this.props.day} key={key} workout={workout} deleteWorkout={this.deleteWorkout} />);
+        return(<Workout day={this.props.day} key={key} workout={workout} deleteWorkout={this.deleteWorkout} getDays={this.props.getDays} />);
       });
       return workouts;
     } else {

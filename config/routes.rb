@@ -45,6 +45,7 @@ Rails.application.routes.draw do
       # POST Routes
       post 'log_workout', to: 'workout_times#create'
       post 'add_workout', to: 'workouts#create'
+      post 'set_workout', to: 'days#set_workout'
       
       # PUT Routes
       put 'upload_avatar', to: 'profile#upload_avatar'

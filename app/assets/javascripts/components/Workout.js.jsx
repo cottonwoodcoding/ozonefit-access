@@ -4,6 +4,8 @@ class Workout extends React.Component {
     this.state = {edit: false};
     this.displayView = this.displayView.bind(this);
     this.displayMoves = this.displayMoves.bind(this);
+    this.workoutActions = this.workoutActions.bind(this);
+    this.setWorkout = this.setWorkout.bind(this);
   }
 
   displayMoves() {
@@ -36,12 +38,31 @@ class Workout extends React.Component {
                      .toString('mm:ss');
   }
 
-  deleteAction() {
+  workoutActions() {
     if(this.props.workout.id != this.props.day.workout_id) {
+      let setWorkoutHtml;
+      let today = new Date();
+      if(this.props.day.id == today.getDay())
+        setWorkoutHtml = <a className='btn ozone-button bottom-20' href='#' onClick={(e) => this.setWorkout(e, this.props.workout.id, this.props.day.id)}>Set As Todays Workout</a>;
       return(<div className="card-action">
-               <a className='btn red white-text' href='#' onClick={(e) => this.props.deleteWorkout(e, this.props.workout.url)}>Delete Workout</a>
+               {setWorkoutHtml}
+               <a className='btn red white-text bottom-20' href='#' onClick={(e) => this.props.deleteWorkout(e, this.props.workout.url)}>Delete Workout</a>
              </div>);
     }
+  }
+
+  setWorkout(e, workoutId, dayId) {
+    e.preventDefault();
+
+    $.ajax({
+      url: 'api/v1/set_workout',
+      type: 'POST',
+      data: {id: dayId, workout_id: workoutId}
+    }).success(data => {
+      this.props.getDays(true);
+    }).error(data => {
+      console.log(data);
+    });
   }
 
   displayView() {
@@ -59,7 +80,7 @@ class Workout extends React.Component {
                    <hr />
                    {this.displayMoves()}
                  </div>
-                 {this.deleteAction()}
+                 {this.workoutActions()}
                </div>
              </div>);
     }
