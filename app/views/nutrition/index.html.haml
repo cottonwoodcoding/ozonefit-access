@@ -1,4 +1,7 @@
 %br
-.video-container
-  %iframe{:allowfullscreen => "", :frameborder => "0", :height => "480", :src => @nutrition.embedUrl, :width => "853"}
+- if @nutrition
+  .video-container
+    %iframe{:allowfullscreen => "", :frameborder => "0", :height => "480", :src => @nutrition.embedUrl, :width => "853"}
+- else
+  %h3.center No Nutrition Tips. Check Back Tomorrow
 
