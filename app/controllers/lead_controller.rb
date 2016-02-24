@@ -1,4 +1,6 @@
 class LeadController < ApplicationController
+  skip_before_action :authenticate_user!
+
   def create
     if Lead.create(lead_params)
       flash[:notice] = "Thanks for your interest. We will get back to you as soon as we can."

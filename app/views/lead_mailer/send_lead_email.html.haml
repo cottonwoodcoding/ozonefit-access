@@ -1,7 +1,7 @@
 %html
   %head
     %meta{:charset => "utf-8"}/
-    %title Welcome To O.ZoneFit Access
+    %title New O.ZoneFit Access Lead
     %meta{:content => "width=device-width", :name => "viewport"}/
     :css
       @media screen and (max-width: 600px) {
@@ -53,18 +53,28 @@
               %td
                 %img{:alt => "Ozone Logo", :src => "#{attachments['logo.png'].url}", :style => "padding: 3px; display: block; max-width: 100%;", :width => "140"}/
               %td.email-title{:style => "padding-left: 20px; text-align: center; color: white; font-family: Georgia, serif; font-size: 25px; font-weight: bold; line-height: 44px; text-transform: uppercase;"}
-                You've been added to Ozonefit Access.
+                = "#{@first_name} #{@last_name} is interested in O.ZoneFit Access"
               %tr
                 %td
                   %hr
               %tr
                 %td{:style => "color: white; font-family: Georgia, serif; font-size: 18px; line-height: 27px; padding-top: 5px;"}
-                  Login Details:
+                  Details:
                 %tr
                   %td.email-intro{:style => "color: white; font-family: Georgia, serif; font-size: 18px; line-height: 27px; padding-top: 5px;"}
                     %ul
                       %li
-                        = "Your login name is: #{@email}"
-                    %h4.white-text
-                      Finish setting up your account by clicking:
-                      %a{href: "#{ENV['app_url']}/users/password/edit?initial=true&reset_password_token=#{@password_token}", target: '_blank'} Ozonefit Access
+                        First Name:
+                        = @first_name
+                      %li
+                        Last Name:
+                        = @last_name
+                      %li
+                        Email:
+                        = @email
+                      %li
+                        Phone:
+                        = @phone
+                      %li
+                        Message:
+                        = @body
