@@ -1,3 +1,4 @@
-.center
-  %h3 No Nutrition Tips Today. Come Back Tomorrow!
-  = image_tag('nutrition-motivation', class: 'responsive-img')
+%br
+.video-container
+  %iframe{:allowfullscreen => "", :frameborder => "0", :height => "480", :src => @nutrition.embedUrl, :width => "853"}
+

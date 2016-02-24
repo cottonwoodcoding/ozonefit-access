@@ -1,0 +1,1 @@
+json.(@nutrition, :id, :embedUrl)

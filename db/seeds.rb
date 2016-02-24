@@ -42,3 +42,8 @@ ozone_challenge.workout_moves << WorkoutMove.create(move_id: air_squat.id, reps:
 ozone_challenge.workout_moves << WorkoutMove.create(move_id: push_up.id, reps: 40)
 ozone_challenge.workout_moves << WorkoutMove.create(move_id: burpee.id, reps: 25)
 puts "O.Zone Challenge Seeded."
+
+Nutrition.create(embedUrl: 'https://drive.google.com/file/d/0B5y12SEGcUymNV8wVTJjdy13Vzg/preview')
+Nutrition.create(embedUrl: 'https://drive.google.com/file/d/0B5y12SEGcUymc2tGVnpkc1RneEk/preview')
+Nutrition.create(embedUrl: 'https://drive.google.com/file/d/0B5y12SEGcUymUnBsMFJhT2cxN1E/preview')
+puts "Nutritions Seeded."

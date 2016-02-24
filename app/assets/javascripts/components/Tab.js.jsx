@@ -12,8 +12,8 @@ class Tab extends React.Component {
   }
 
   render() {
-    return(<li className="tab col s3">
-             <a className='ozone-text truncate active' href='#' onClick={(e) => this.callback(e)}>{this.props.text}</a>
+    return(<li className="tab col s12 m3">
+             <a className='ozone-text truncate' href='#' onClick={(e) => this.callback(e)}>{this.props.text}</a>
            </li>);
   }
 }

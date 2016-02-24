@@ -23,7 +23,7 @@ Rails.application.routes.draw do
       # Resource Routes
       resources :moves
       resources :sound_clouds
-      resources :nutrition, except: :index
+      resources :nutritions
       resources :motivations
 
       # Nested API Routes

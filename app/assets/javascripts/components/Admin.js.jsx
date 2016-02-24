@@ -26,6 +26,8 @@ class Admin extends React.Component {
       case 'motivation':
         return(<AdminMotivations />);
         break;
+      case 'nutrition':
+        return(<Nutritions />)
       default:
         this.setState({tab: 'users'});
     }
@@ -37,20 +39,17 @@ class Admin extends React.Component {
 
   render() {
     return(<div>
-             <div className="row">
-               <div className="col s12">
-                 <ul className="tabs">
-                   <Tab callbackValue='users' text='Users' callback={this.tabState} />
-                   <Tab callbackValue='motivation' text='Motivation' callback={this.tabState} />
-                   <Tab callbackValue='days' text='Workouts' callback={this.tabState} />
-                   <Tab callbackValue='moves' text='Moves' callback={this.tabState} />
-                   <Tab callbackValue='measurements' text='Measurements' callback={this.tabState} />
-                   <Tab callbackValue='soundcloud' text='SoundCloud' callback={this.tabState} />
-                 </ul>
-               </div>
-               <div className="col s12 card">
-                {this.display()}
-               </div>
+             <ul className="tabs">
+               <Tab callbackValue='users' text='Users' callback={this.tabState} />
+               <Tab callbackValue='motivation' text='Motivation' callback={this.tabState} />
+               <Tab callbackValue='nutrition' text='Nutrition' callback={this.tabState} />
+               <Tab callbackValue='days' text='Workouts' callback={this.tabState} />
+               <Tab callbackValue='moves' text='Moves' callback={this.tabState} />
+               <Tab callbackValue='measurements' text='Measurements' callback={this.tabState} />
+               <Tab callbackValue='soundcloud' text='SoundCloud' callback={this.tabState} />
+             </ul>
+             <div className="col s12 card">
+              {this.display()}
              </div>
            </div>);
   }
