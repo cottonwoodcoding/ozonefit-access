@@ -76,19 +76,17 @@ class Motivation extends React.Component {
     if(!this.state.edit) {
       let motivation = this.props.motivation;
 
-      return(<div className='row'>
-               <div className='col s4'>
-                  <div className="card blue-grey darken-1">
-                    <div className='card-content white-text'>
-                      <span className='card-title'>Motivation Quote</span>
-                      <p className='truncate'>{motivation.text}</p>
-                    </div>
-                    <div className='card-action'>
-                      <a href="#" className='btn ozone-button' onClick={this.toggleEdit}>
-                        <i className='fa fa-edit' />
-                      </a>
-                      {this.deleteAction(motivation.id)}
-                    </div>
+      return(<div className='col s4'>
+               <div className="card blue-grey darken-1">
+                 <div className='card-content white-text'>
+                   <span className='card-title'>Motivation Quote</span>
+                   <p className='truncate'>{motivation.text}</p>
+                 </div>
+                 <div className='card-action'>
+                   <a href="#" className='btn ozone-button' onClick={this.toggleEdit}>
+                     <i className='fa fa-edit' />
+                   </a>
+                   {this.deleteAction(motivation.id)}
                  </div>
                 </div>
               </div>);

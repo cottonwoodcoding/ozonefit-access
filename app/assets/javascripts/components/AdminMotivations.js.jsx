@@ -67,7 +67,9 @@ class AdminMotivations extends React.Component {
         <div>
           <h5 className='center'>Motivations</h5>
           {this.motivationForm()}
-          {this.displayMotivations()}
+          <div className='row'>
+            {this.displayMotivations()}
+          </div>
         </div>
       );
     } else {

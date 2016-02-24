@@ -74,20 +74,18 @@ class Nutrition extends React.Component {
     if(!this.state.edit) {
       let nutrition = this.props.nutrition;
 
-      return(<div className='row'>
-               <div className='col s4'>
-                 <div className="card blue-grey darken-1">
-                   <div className='card-content white-text'>
-                     <span className='card-title'>Nutrition</span>
-                     <p className='truncate'>{nutrition.embedUrl}</p>
-                   </div>
-                   <div className='card-action'>
-                     <a href="#" className='btn ozone-button' onClick={this.toggleEdit}>
-                       <i className='fa fa-edit' />
-                     </a>
-                     {this.deleteAction(nutrition.id)}
-                   </div>
-                </div>
+      return(<div className='col s4'>
+               <div className="card blue-grey darken-1">
+                 <div className='card-content white-text'>
+                   <span className='card-title'>Nutrition Embed</span>
+                   <p className='truncate'>{nutrition.embedUrl}</p>
+                 </div>
+                 <div className='card-action'>
+                   <a href="#" className='btn ozone-button' onClick={this.toggleEdit}>
+                     <i className='fa fa-edit' />
+                   </a>
+                   {this.deleteAction(nutrition.id)}
+                 </div>
                </div>
              </div>);
     }

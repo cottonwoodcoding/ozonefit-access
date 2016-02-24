@@ -67,7 +67,9 @@ class Nutritions extends React.Component {
         <div>
           <h5 className='center'>Nutritions</h5>
           {this.nutritionForm()}
-          {this.displayNutritions()}
+          <div className='row'>
+            {this.displayNutritions()}
+          </div>
         </div>
       );
     } else {
