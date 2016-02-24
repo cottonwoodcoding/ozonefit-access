@@ -63,8 +63,8 @@
                 %tr
                   %td.email-intro{:style => "color: white; font-family: Georgia, serif; font-size: 18px; line-height: 27px; padding-top: 5px;"}
                     %ul
-                      %li
+                      %li{style: 'color: white !important;'}
                         = "Your login name is: #{@email}"
                     %h4.white-text
                       Finish setting up your account by clicking:
-                      %a{href: "#{ENV['app_url']}/users/password/edit?initial=true&reset_password_token=#{@password_token}", target: '_blank'} Ozonefit Access
+                      %a{style: 'color: white !important;' href: "#{ENV['app_url']}/users/password/edit?initial=true&reset_password_token=#{@password_token}", target: '_blank'} Ozonefit Access
