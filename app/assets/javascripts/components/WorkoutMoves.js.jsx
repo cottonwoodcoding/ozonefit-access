@@ -25,7 +25,7 @@ class WorkoutMoves extends React.Component {
     let workout_moves = this.state.workout_moves.map(workout_move => {
       let moveData;
       workout_move.workout_moves.map(wm => {
-        if(wm.move_id == workout_move.id) {
+        if(wm.workout_id == this.props.day.workout_id) {
           moveData = wm;
         }
       });
