@@ -40,7 +40,7 @@ class Days extends React.Component {
 
   render() {
     if(this.state.loaded) {
-      return(<div>
+      return(<div className='row'>
               {this.display()}
              </div>);
     } else {
