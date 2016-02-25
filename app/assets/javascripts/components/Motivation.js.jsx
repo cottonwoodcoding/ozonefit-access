@@ -14,7 +14,7 @@ class Motivation extends React.Component {
     if(this.state.edit) {
       let motivation = this.props.motivation;
 
-      return(<div className='col s4'>
+      return(<div className='col s12 m4'>
                <form onSubmit={(e) => this.editMotivation(e, motivation.id)}>
                  <div className='card blue-grey darken-1'>
                    <div className='card-content white-text'>
@@ -76,7 +76,7 @@ class Motivation extends React.Component {
     if(!this.state.edit) {
       let motivation = this.props.motivation;
 
-      return(<div className='col s4'>
+      return(<div className='col s12 m4'>
                <div className="card blue-grey darken-1">
                  <div className='card-content white-text'>
                    <span className='card-title'>Motivation Quote</span>
