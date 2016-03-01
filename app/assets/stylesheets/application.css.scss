@@ -1,3 +1,6 @@
+@import "vars";
+@import "materialize/components/color";
+$secondary-color: $ozone-blue !default;
 @import "materialize";
 @import "font-awesome";
 @import "base";
