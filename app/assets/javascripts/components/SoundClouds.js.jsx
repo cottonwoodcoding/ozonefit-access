@@ -53,7 +53,7 @@ class SoundClouds extends React.Component {
   }
 
   render() {
-    return(<div>
+    return(<div className='container'>
              <h5 className='center'>SoundCloud For Workouts</h5>
              <form onSubmit={this.handleSubmit}>
                <div className='row'>

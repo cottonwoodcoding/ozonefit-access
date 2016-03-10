@@ -66,7 +66,7 @@ class Moves extends React.Component {
 
   render() {
     if(this.state.loaded) {
-      return(<div>
+      return(<div className='container'>
                <h5 className='center'>Add Move</h5>
                <form onSubmit={this.addMove}>
                  <input type='text' required='true' placeholder='Move Name' ref='moveName' />
@@ -76,7 +76,9 @@ class Moves extends React.Component {
                <br />
                <h5 className='center'>Moves Search</h5>
                <input type='text' ref='moveQuery' placeholder='Search Moves' onChange={this.searchMoves} />
-               {this.displayMoves()}
+               <div className='row'>
+                 {this.displayMoves()}
+               </div>
              </div>);
     } else {
       return(<h5 className='center'>Loading...</h5>);

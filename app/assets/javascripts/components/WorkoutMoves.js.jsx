@@ -8,29 +8,23 @@ class WorkoutMoves extends React.Component {
   componentWillMount() {
     if(this.props.day) {
       $.ajax({
-        url: '/api/v1/days/'+this.props.day.id+'/workout_moves',
+        url: '/api/v1/days/'+ this.props.day.id + '/workout_moves',
         type: 'GET',
         data: {day_id: this.props.day.id}
       }).success(data => {
-        this.setState({workout_moves: data.moves, rounds: data.rounds});
+        this.setState({workout_moves: data.workout_moves, rounds: data.rounds});
       }).error(data => {
         console.log(data);
       });
-    } else if(this.props.workout) {
-      this.setState({workout_moves: this.props.workout.moves, rounds: this.props.workout.rounds})
+    } else {
+      this.setState({workout_moves: this.props.workout_moves, rounds: this.props.rounds})
     }
   }
 
   display() {
     let workout_moves = this.state.workout_moves.map(workout_move => {
-      let moveData;
-      workout_move.workout_moves.map(wm => {
-        if(wm.workout_id == this.props.day.workout_id) {
-          moveData = wm;
-        }
-      });
       let key = `workout_move-${workout_move.id}`;
-      return(<WorkoutMove key={key} workoutMove={workout_move} moveData={moveData} changeVideo={this.props.changeVideo} />);
+      return(<WorkoutMove key={key} workoutMove={workout_move} changeVideo={this.props.changeVideo} />);
     });
     return workout_moves;
   }

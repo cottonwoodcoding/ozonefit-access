@@ -7,7 +7,6 @@ class Workouts extends React.Component {
     this.workoutForm = this.workoutForm.bind(this);
     this.addWorkout = this.addWorkout.bind(this);
     this.addMove = this.addMove.bind(this);
-    this.moveExists = this.moveExists.bind(this);
     this.showMoveOptions = this.showMoveOptions.bind(this);
     this.removeMove = this.removeMove.bind(this);
     this.deleteWorkout = this.deleteWorkout.bind(this);
@@ -82,11 +81,9 @@ class Workouts extends React.Component {
   addMove() {
     let movesToAdd = this.state.movesToAdd;
     let values = this.refs.selectedMove.value.split('-');
-    if(values.length == 2 && this.refs.reps.value.length) {
-      movesToAdd.push({id: values[0], name: values[1], reps: this.refs.reps.value});
-      this.refs.reps.value = '';
-      this.setState({movesToAdd: movesToAdd});
-    }
+    movesToAdd.push({id: values[0], name: values[1], reps: this.refs.reps.value});
+    this.refs.reps.value = '';
+    this.setState({movesToAdd: movesToAdd});
   }
 
   removeMove(moveId) {
@@ -96,21 +93,9 @@ class Workouts extends React.Component {
     this.setState({movesToAdd: movesToAdd});
   }
 
-  moveExists(moveId) {
-    let exists = false;
-    for(let i = 0; i < this.state.movesToAdd.length; i++){
-      let moveData = this.state.movesToAdd[i];
-      if(moveData && moveData.id == parseInt(moveId)){
-        exists = true;
-        break;
-      }
-    }
-    return exists;
-  }
-
   showMoves() {
-    let addedMoves = this.state.movesToAdd.map(move => {
-      let key = `move-${move.id}`;
+    let addedMoves = this.state.movesToAdd.map((move, index) => {
+      let key = `move-${move.id}-${index}`;
       return(<div key={key} className='row'>
                <div className='col s12'>
                  <div className='col s4'>
@@ -149,10 +134,8 @@ class Workouts extends React.Component {
     if(this.state.showWorkoutForm) {
        let moveOptions = this.state.moves.map(move => {
          let key = `move-option-${move.id}`;
-         if(!this.moveExists(move.id)){
-           let moveValue = `${move.id}-${move.name}`;
-           return(<option key={key} value={moveValue} >{move.name}</option>);
-         }
+         let moveValue = `${move.id}-${move.name}`;
+         return(<option key={key} value={moveValue} >{move.name}</option>);
       }).filter(function(n){ return n != undefined }); ;
 
       return(<div className='row'>

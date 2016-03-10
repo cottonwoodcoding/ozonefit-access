@@ -5,7 +5,6 @@ class WorkoutMove extends React.Component {
 
   render() {
     let workoutMove = this.props.workoutMove;
-    let moveData = this.props.moveData;
     return(<div>
              <div className='row'>
                <div className='col s6'>
@@ -15,7 +14,7 @@ class WorkoutMove extends React.Component {
                </div>
                <div className='col s6'>
                  <h5>
-                   {moveData.reps} Reps
+                   {workoutMove.reps} Reps
                 </h5>
                </div>
              </div>

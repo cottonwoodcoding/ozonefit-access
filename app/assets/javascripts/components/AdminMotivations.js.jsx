@@ -64,7 +64,7 @@ class AdminMotivations extends React.Component {
   render() {
     if(this.state.loaded) {
       return(
-        <div>
+        <div className='container'>
           <h5 className='center'>Motivations</h5>
           {this.motivationForm()}
           <div className='row'>

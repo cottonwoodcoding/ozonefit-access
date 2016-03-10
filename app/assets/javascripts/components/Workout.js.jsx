@@ -1,35 +1,37 @@
 class Workout extends React.Component {
   constructor(props){
     super(props);
-    this.state = {edit: false};
+    this.state = {edit: false, moves: []};
     this.displayView = this.displayView.bind(this);
-    this.displayMoves = this.displayMoves.bind(this);
     this.workoutActions = this.workoutActions.bind(this);
     this.setWorkout = this.setWorkout.bind(this);
   }
 
-  displayMoves() {
-    let moves = this.props.workout.moves.map(move => {
-      let correctWorkoutMove = null;
-      move.workout_moves.forEach(workoutMove => {
-        if(workoutMove.workout_id == this.props.workout.id)
-          correctWorkoutMove = workoutMove
+  componentWillMount() {
+    $.ajax({
+      url: '/api/v1/workout_moves',
+      type: 'GET',
+      data: {workout: this.props.workout}
+    }).success(data => {
+      let moves = data.map(move => {
+        let key = `move-${move.id}`;
+        return(<div key={key} className='row'>
+                 <div className='col s12'>
+                   <div className='col s6'>
+                     <div className='bold'>Move</div>
+                     {move.name}
+                   </div>
+                   <div className='col s6'>
+                     <div className='bold'>Reps</div>
+                     {move.reps}
+                   </div>
+                 </div>
+               </div>);
       });
-      let key = `move-${move.id}`;
-      return(<div key={key} className='row'>
-               <div className='col s12'>
-                 <div className='col s6'>
-                   <div className='bold'>Move</div>
-                   {move.name}
-                 </div>
-                 <div className='col s6'>
-                   <div className='bold'>Reps</div>
-                   {correctWorkoutMove.reps}
-                 </div>
-               </div>
-             </div>);
+      this.setState({moves: moves});
+    }).error(data => {
+      console.log(data);
     });
-    return moves;
   }
 
   formatTime(time) {
@@ -78,7 +80,7 @@ class Workout extends React.Component {
                    <p>Rounds: {workout.rounds}</p>
                    <p>Number of Moves: {workout.moves.length}</p>
                    <hr />
-                   {this.displayMoves()}
+                   {this.state.moves}
                  </div>
                  {this.workoutActions()}
                </div>

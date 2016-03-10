@@ -49,6 +49,7 @@ class Admin extends React.Component {
                <Tab callbackValue='soundcloud' text='SoundCloud' callback={this.tabState} />
              </ul>
              <div className="col s12 card">
+              <br />
               {this.display()}
              </div>
            </div>);
