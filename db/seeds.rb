@@ -23,6 +23,7 @@ squat_jacks = Move.create(name: 'Squat Jacks', url: '<iframe width="560" height=
 suicide = Move.create(name: 'Suicides', url: '<iframe width="560" height="315" src="https://www.youtube.com/embed/rWcWbPs2u-8" frameborder="0" allowfullscreen></iframe>')
 the_dip = Move.create(name: 'The Dip', url: '<iframe width="560" height="315" src="https://www.youtube.com/embed/E-KuVYFtMfU" frameborder="0" allowfullscreen></iframe>')
 seated_knee_tucks = Move.create(name: 'Seated Knee Tucks', url: '<iframe width="560" height="315" src="https://www.youtube.com/embed/apni0oE5Xuc" frameborder="0" allowfullscreen></iframe>')
+high_knees = Move.create(name: 'High Knees', url: '<iframe width="560" height="315" src="https://www.youtube.com/embed/-fvXI-TlEUs" frameborder="0" allowfullscreen></iframe>')
 puts "Moves Seeded."
 
 # Trainers
