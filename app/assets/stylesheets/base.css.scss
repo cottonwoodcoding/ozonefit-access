@@ -74,42 +74,6 @@ html {
   margin: 0 auto;
 }
 
-/* label color */
-.input-field label {
-  color: black;
-}
-
-/* label focus color */
-.input-field input[type=text]:focus + label {
-  color: black;
-}
-
-.input-field input[type=email]:focus + label {
-  color: black;
-}
-
-.input-field input[type=password]:focus + label {
-  color: black;
-}
-
-/* label underline focus color */
-.input-field input[type=text]:focus {
-  border-bottom: 1px solid #000;
-  box-shadow: 0 1px 0 0 #000;
-}
-
-/* valid color */
-.input-field input[type=text].valid {
-  border-bottom: 1px solid #000;
-  box-shadow: 0 1px 0 0 #000;
-}
-
-/* invalid color */
-.input-field input[type=text].invalid {
-  border-bottom: 1px solid #000;
-  box-shadow: 0 1px 0 0 #000;
-}
-
 .underline {
   text-decoration: underline;
 }
@@ -151,12 +115,12 @@ html {
   height: 150px;
 }
 
-.moves-container {
-  max-height: 305px;
-  overflow: scroll;
-}
-
 .leaderboard-avatar {
   width: 100px;
   height: 100px;
+}
+
+.card h4 {
+  margin: 0 0.912rem 0 !important;
+  padding-top: 10px;
 }
