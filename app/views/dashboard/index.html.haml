@@ -1,6 +1,6 @@
 %br
   - if @workout
-    = react_component('Dashboard', {currentDay: @current_day, videoUrl: @video_url, motivation: @motivation, workout_min: @workout_min, workout_ozf: @workout_ozf, workout: @workout})
+    = react_component('Dashboard', {currentDay: @current_day, videoUrl: @video_url, motivation: @motivation, workout_min: @workout_min, workout_ozf: @workout_ozf, workout: @workout, workout_moves: @workout.workout_moves})
   - else
     %h3.center No Workout Today.
  

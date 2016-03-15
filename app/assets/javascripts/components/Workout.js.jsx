@@ -7,33 +7,6 @@ class Workout extends React.Component {
     this.setWorkout = this.setWorkout.bind(this);
   }
 
-  componentWillMount() {
-    $.ajax({
-      url: '/api/v1/workout_moves',
-      type: 'GET',
-      data: {workout: this.props.workout}
-    }).success(data => {
-      let moves = data.map(move => {
-        let key = `move-${move.id}`;
-        return(<div key={key} className='row'>
-                 <div className='col s12'>
-                   <div className='col s6'>
-                     <div className='bold'>Move</div>
-                     {move.name}
-                   </div>
-                   <div className='col s6'>
-                     <div className='bold'>Reps</div>
-                     {move.reps}
-                   </div>
-                 </div>
-               </div>);
-      });
-      this.setState({moves: moves});
-    }).error(data => {
-      console.log(data);
-    });
-  }
-
   formatTime(time) {
     return (new Date).clearTime()
                      .addSeconds(time)
@@ -41,16 +14,16 @@ class Workout extends React.Component {
   }
 
   workoutActions() {
+    let setWorkoutHtml;
     if(this.props.workout.id != this.props.day.workout_id) {
-      let setWorkoutHtml;
       let today = new Date();
       if(this.props.day.id == today.getDay())
         setWorkoutHtml = <a className='btn ozone-button bottom-20' href='#' onClick={(e) => this.setWorkout(e, this.props.workout.id, this.props.day.id)}>Set As Todays Workout</a>;
-      return(<div className="card-action">
-               {setWorkoutHtml}
-               <a className='btn red white-text bottom-20' href='#' onClick={(e) => this.props.deleteWorkout(e, this.props.workout.url)}>Delete Workout</a>
-             </div>);
     }
+    return(<div className="card-action">
+             {setWorkoutHtml}
+             <a className='btn red white-text bottom-20' href='#' onClick={(e) => this.props.deleteWorkout(e, this.props.workout.url)}>Delete Workout</a>
+           </div>);
   }
 
   setWorkout(e, workoutId, dayId) {
@@ -67,6 +40,20 @@ class Workout extends React.Component {
     });
   }
 
+  displayMoves(workout) {
+    let moves = workout.workout_moves.map(workoutMove => {
+      return(<div className='row'>
+               <div className='col s6'>
+                 {workoutMove.name}
+               </div>
+               <div className='col s6'>
+                 {workoutMove.reps}
+               </div>
+             </div>);
+    });
+    return moves;
+  }
+
   displayView() {
     if(!this.state.editView) {
       let workout = this.props.workout;
@@ -78,9 +65,17 @@ class Workout extends React.Component {
                    <p>Min Time: {this.formatTime(workout.min_time)}</p>
                    <p>Ozf Time: {this.formatTime(workout.ozf_time)}</p>
                    <p>Rounds: {workout.rounds}</p>
-                   <p>Number of Moves: {workout.moves.length}</p>
-                   <hr />
-                   {this.state.moves}
+                   <p>Number of Moves: {workout.workout_moves.length}</p>
+                   <div class='row'>
+                     <div className='col s6'>
+                       <h4>Move</h4>
+                     </div>
+                     <div className='col s6'>
+                       <h4>Reps</h4>
+                     </div>
+                     <hr />
+                   </div>
+                   {this.displayMoves(workout)}
                  </div>
                  {this.workoutActions()}
                </div>

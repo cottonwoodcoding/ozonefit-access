@@ -1,6 +1,5 @@
 class Api::V1::WorkoutsController < ApiController
   include TimeParser
-  include WorkoutMovesCalculator
 
   before_action :day, except: :workout_moves
   before_action :parse_time, only: [:create, :update]
@@ -11,10 +10,9 @@ class Api::V1::WorkoutsController < ApiController
 
   def create
     @workout = @day.workouts.new(workout_params)
-    params[:moves].keys.each do |key|
-      params_move = params[:moves][key]
-      @workout.moves << Move.find(params_move['id'])
-      @workout.workout_moves.last.update(reps: params_move['reps'])
+    params[:moves].values.each do |move|
+      move[:url] = Move.find(move[:id]).url
+      @workout.workout_moves << move
     end
     if @workout.save
       render :workout
@@ -34,27 +32,6 @@ class Api::V1::WorkoutsController < ApiController
   def destroy
     @day.workouts.find(params[:id]).destroy
     head :ok
-  end
-
-  def moves
-    moves = []
-    workout = @day.workouts.find(@day.workout_id)
-    render json: WorkoutMovesCalculator.calcuate_moves(workout)
-  end
-
-  def workout_moves
-    moves = []
-    params[:workout][:moves].values.each do |move|
-      move[:workout_moves].each do |workout_move|
-        workout_move = workout_move.last
-        moveData = {id: workout_move[:id], name: move[:name], reps: workout_move[:reps]} if workout_move[:workout_id] == params[:workout][:id]
-        if moveData && !moves.include?(moveData)
-          moves << moveData
-          break
-        end
-      end
-    end
-    render json: moves
   end
 
   private

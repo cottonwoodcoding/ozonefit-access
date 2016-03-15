@@ -4,6 +4,7 @@ class CreateWorkouts < ActiveRecord::Migration
       t.integer :min_time
       t.belongs_to :day
       t.integer :rounds
+      t.text :workout_moves
 
       t.timestamps null: false
     end

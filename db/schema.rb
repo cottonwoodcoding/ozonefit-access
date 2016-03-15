@@ -140,14 +140,8 @@ ActiveRecord::Schema.define(version: 20160224230313) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  create_table "workout_moves", force: :cascade do |t|
-    t.integer "workout_id"
-    t.integer "move_id"
-    t.string  "reps"
-  end
-
   create_table "workout_times", force: :cascade do |t|
-    t.date     "date",            default: '2016-02-23', null: false
+    t.date     "date",            default: '2016-03-15', null: false
     t.float    "time",            default: 0.0,          null: false
     t.integer  "user_id"
     t.datetime "created_at",                             null: false
@@ -160,8 +154,9 @@ ActiveRecord::Schema.define(version: 20160224230313) do
     t.integer  "min_time"
     t.integer  "day_id"
     t.integer  "rounds"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text     "workout_moves"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "ozf_time"
     t.string   "name"
   end

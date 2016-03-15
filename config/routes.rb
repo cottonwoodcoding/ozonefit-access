@@ -39,9 +39,7 @@ Rails.application.routes.draw do
       get 'search_users', to: 'users#search'
       get 'leaders', to: 'leaderboard#index'
       get 'random_sound_cloud', to: 'sound_clouds#random'
-      get 'days/:day_id/workout_moves', to: 'workouts#moves'
       get 'validate_time', to: 'workout_times#validate_time'
-      get 'workout_moves', to: 'workouts#workout_moves'
 
       # POST Routes
       post 'log_workout', to: 'workout_times#create'

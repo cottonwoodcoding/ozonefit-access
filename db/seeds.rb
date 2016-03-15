@@ -38,10 +38,11 @@ Motivation.create(text: 'Keep Going, You Got This!')
 
 # O.Zone Challenge
 ozone_challenge = Workout.create(name: 'O.Zone Challenge', min_time: 160, ozf_time: 300, rounds: 1)
-ozone_challenge.workout_moves << WorkoutMove.create(move_id: situp.id, reps: 40)
-ozone_challenge.workout_moves << WorkoutMove.create(move_id: air_squat.id, reps: 40)
-ozone_challenge.workout_moves << WorkoutMove.create(move_id: push_up.id, reps: 40)
-ozone_challenge.workout_moves << WorkoutMove.create(move_id: burpee.id, reps: 25)
+ozone_challenge.workout_moves << {id: situp.id, name: situp.name, reps: '40', url: situp.url}
+ozone_challenge.workout_moves << {id: air_squat.id, name: air_squat.name, reps: '40', url: air_squat.url}
+ozone_challenge.workout_moves << {id: push_up.id, name: push_up.name, reps: '40', url: push_up.url}
+ozone_challenge.workout_moves << {id: burpee.id, name: burpee.name, reps: '25', url: burpee.url}
+ozone_challenge.save
 puts "O.Zone Challenge Seeded."
 
 Nutrition.create(embedUrl: 'https://drive.google.com/file/d/0B5y12SEGcUymNV8wVTJjdy13Vzg/preview')

@@ -1,3 +1,3 @@
 if Rails.env.development?
-  ENV['app_url'] = 'http://localhost:3001'
+  ENV['app_url'] = 'http://localhost:3006'
 end

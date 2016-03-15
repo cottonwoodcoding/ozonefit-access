@@ -3,6 +3,15 @@ class WorkoutMove extends React.Component {
     super(props);
   }
 
+  displayReps(workoutMove) {
+    reps = workoutMove.reps.toString().split(' ');
+    if(reps.length > 1){
+      return(workoutMove.reps)
+    } else {
+      return(workoutMove.reps + " Reps");
+    }
+  }
+
   render() {
     let workoutMove = this.props.workoutMove;
     return(<div>
@@ -14,7 +23,7 @@ class WorkoutMove extends React.Component {
                </div>
                <div className='col s6'>
                  <h5>
-                   {workoutMove.reps} Reps
+                   {this.displayReps(workoutMove)}
                 </h5>
                </div>
              </div>
