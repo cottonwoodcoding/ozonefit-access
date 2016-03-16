@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'register/show'
+
   # Root Route
   root 'welcome#index'
 
@@ -13,6 +15,7 @@ Rails.application.routes.draw do
   get 'ozone_challenge', to: 'ozone_challenge#show', as: 'challenge'
   get 'trainers', to: 'trainers#index', as: 'trainers'
   get 'leaders', to: 'leaderboards#index', as: 'leaders'
+  get 'register', to: 'register#show', as: 'register'
 
   # POST Routes
   post 'lead/create', as: 'leads'

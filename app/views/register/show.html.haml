@@ -1,0 +1,18 @@
+.center
+  %h1 O.ZoneFit Access Is A Paid Service!
+  .row
+    .col.s12
+      .card.blue-grey.darken-1
+        .card-content.white-text
+          %span.card-title Thanks For Your Interest!
+          %h5 You Can Call, Text Or Email To Sign up!
+          %hr
+          %h5.lead 
+            Phone: 
+            %a.white-text{href:"tel:+1-801-842-7590"} (801) 842-7590</a>
+          %h5.lead
+            Email: 
+            = mail_to("info@ozonefit.com", nil, class: 'white-text')
+        .card-action
+          = link_to 'Back', :back, class: 'btn'
+           
