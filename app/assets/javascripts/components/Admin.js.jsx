@@ -9,7 +9,7 @@ class Admin extends React.Component {
   display() {
     switch(this.state.tab){
       case 'users':
-        return(<Users workflowState='active' currentUser={this.props.current_user} />);
+        return(<Users workflowState='active' currentUser={this.props.current_user} revenue={this.props.revenue} />);
         break;
       case 'days':
         return(<Days />);

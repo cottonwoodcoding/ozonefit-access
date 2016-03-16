@@ -88,7 +88,10 @@ class Users extends React.Component {
   render() {
     if(this.state.loaded) {
       return(<div className='container'>
-               <h5 className='center'>Users</h5>
+               <div className='center'>
+                 <h5>Users</h5>
+                 <h6>Expected Monthly Revenue - {this.props.revenue}</h6>
+               </div>
                <div className='row'>
                  <div className='col s12'>
                    <ul className='tabs'>

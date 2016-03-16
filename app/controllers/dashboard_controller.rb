@@ -2,7 +2,7 @@ class DashboardController < ApplicationController
   include TimeParser
 
   def index
-    if current_user.initial_ochallenge_completed
+    if current_user.initial_ochallenge_completed && !current_user.admin
       @video_url = SoundCloud.random
       @motivation = Motivation.all.try(:sample)
       @current_day = Day.find(Date.today.wday)

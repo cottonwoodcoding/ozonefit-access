@@ -31,6 +31,10 @@ class User < ActiveRecord::Base
     self.workout_times.count
   end
 
+  def self.calculate_revenue
+    ActionController::Base.helpers.number_to_currency(User.where('admin = ? and workflow_state = ?', false, 'active').count * 8.99)
+  end
+
   private
     def create_profile
       self.profile = Profile.create
