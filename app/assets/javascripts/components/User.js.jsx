@@ -44,7 +44,7 @@ class User extends React.Component {
 
     let formData = {};
     if(deleteUser){
-      formData = {user: {}};
+      formData = {user: {delete: true}};
     } else {
       formData = {user: {workflow_state: (this.state.user.workflow_state == 'active' ? 'inactive' : 'active')}};
     }
@@ -70,7 +70,7 @@ class User extends React.Component {
                  <button type='button' className='btn red white-text col s12 m6' onClick={(e) => this.toggleUserState(e)}>Deactivate</button>
                </div>);
       } else {
-        return(<div>
+        return(<div className='row'>
                  <button type='submit' className='btn ozone-button col s12 m4'>Save</button>
                  <button type='button' className='btn green white-text col s12 m4' onClick={(e) => this.toggleUserState(e)}>Activate</button>
                  <button type='button' className='btn red white-text col s12 m4' onClick={(e) => this.toggleUserState(e, true)}>Delete</button>
