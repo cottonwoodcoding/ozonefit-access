@@ -1,9 +1,6 @@
 class Api::V1::MeasurementsController < ApiController
-  include TimeParser
-
   before_action :user
   before_action :measurement, except: [:index, :create]
-  before_action :parse_time, only: [:create, :update]
 
   def index
     @measurements = @user.measurements
@@ -33,10 +30,9 @@ class Api::V1::MeasurementsController < ApiController
 
   private
     def measurement_params
-      params.require(:measurement).permit(:weight, :chest, :right_bicep, :left_bicep,
-                                          :neck, :waist, :right_thigh, :left_thigh,
-                                          :right_calf, :left_calf, :fat_percent, :notes,
-                                          :ozone_challenge)
+      params.require(:measurement).permit(:weight, :chest, :left_bicep,
+                                          :neck, :waist, :left_thigh, 
+                                          :left_calf, :fat_percent, :notes)
     end
 
     def user
@@ -45,9 +41,5 @@ class Api::V1::MeasurementsController < ApiController
 
     def measurement
       @measurement = @user.measurements.find(params[:id])
-    end
-
-    def parse_time
-      params[:measurement][:ozone_challenge] = TimeParser.string_to_minutes(params[:measurement][:ozone_challenge])
     end
 end

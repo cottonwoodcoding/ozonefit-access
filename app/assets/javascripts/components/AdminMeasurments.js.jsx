@@ -57,42 +57,42 @@ class AdminMeasurements extends React.Component {
       return(<form onSubmit={this.submitMeasurement}>
                <div className='row'>
                  <div className='input-field'>
-                   <input type='text' placeholder="Weight" ref="weight" />
+                   <input type='text' placeholder="Weight" ref="weight" required />
                  </div>
                </div>
                <div className='row'>
                  <div className='input-field'>
-                   <input type='text' placeholder="Chest" ref="chest" />
+                   <input type='text' placeholder="Chest" ref="chest" required />
                  </div>
                </div>
                <div className='row'>
                  <div className='input-field'>
-                   <input type='text' placeholder="Left Bicep" ref="leftBicep" />
+                   <input type='text' placeholder="Left Bicep" ref="leftBicep" required />
                  </div>
                </div>
                <div className='row'>
                  <div className='input-field'>
-                   <input type='text' placeholder="Neck" ref="neck" />
+                   <input type='text' placeholder="Neck" ref="neck" required />
                  </div>
                </div>
                <div className='row'>
                  <div className='input-field'>
-                   <input type='text' placeholder="Waist" ref="waist" />
+                   <input type='text' placeholder="Waist" ref="waist" required />
                  </div>
                </div>
                <div className='row'>
                  <div className='input-field'>
-                   <input type='text' placeholder="Left Thigh" ref="leftThigh" />
+                   <input type='text' placeholder="Left Thigh" ref="leftThigh" required />
                  </div>
                </div>
                <div className='row'>
                  <div className='input-field'>
-                   <input type='text' placeholder="Left Calf" ref="leftCalf" />
+                   <input type='text' placeholder="Left Calf" ref="leftCalf" required />
                  </div>
                </div>
                <div className='row'>
                  <div className='input-field'>
-                   <input type='text' placeholder="Body Fat" ref="fat" />
+                   <input type='text' placeholder="Body Fat" ref="fat" required />
                  </div>
                </div>
                <div className='row'>
