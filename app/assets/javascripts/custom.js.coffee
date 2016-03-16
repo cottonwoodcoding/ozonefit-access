@@ -5,4 +5,4 @@ $(document).ready ->
   $('.alert').show ->
     setTimeout (->
       $('.alert').slideToggle()
-    ), 3000
+    ), 5000

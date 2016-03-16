@@ -41,13 +41,13 @@ class OzoneChallenge extends React.Component {
                  </div>
                </div>
                <div className='col s12 m6'>
-                 <StopWatch fetchLeaderboard={this.fetchLeaderboard} workoutVideo={this.state.workoutVideoUrl} changeVideo={this.changeVideo} ozoneChallenge={true} finishMessage='Nice work! Keep challenging yourself to get to the top!' />
-               </div>
+                 <StopWatch workout={this.props.workout} fetchLeaderboard={this.fetchLeaderboard} workoutVideo={this.state.workoutVideoUrl} changeVideo={this.changeVideo} ozoneChallenge={true} finishMessage='Nice work! Keep challenging yourself to get to the top!' />
+               </div> 
              </div>
              <div className='row center'>
                <div className='col s12 m6 center'>
                  <div className='card workout-moves'>
-                   <WorkoutMoves fetchLeaderboard={this.fetchLeaderboard} workout_moves={this.props.workout_moves} rounds={this.props.workout.rounds} workout_min={this.props.workout_min} workout_ozf={this.props.workout_ozf} workoutVideo={this.state.workoutVideoUrl} changeVideo={this.changeVideo} />
+                   <WorkoutMoves workout={this.props.workout} fetchLeaderboard={this.fetchLeaderboard} workout_moves={this.props.workout_moves} rounds={this.props.workout.rounds} workout_min={this.props.workout_min} workout_ozf={this.props.workout_ozf} workoutVideo={this.state.workoutVideoUrl} changeVideo={this.changeVideo} />
                  </div>
                </div>
                <div className='col s12 m6'>

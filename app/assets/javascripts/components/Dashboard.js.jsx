@@ -51,7 +51,7 @@ class Dashboard extends React.Component {
              <div className='row center'>
                <div className='col s12 m6 center'>
                  <div className='card workout-moves'>
-                   <WorkoutMoves workout_min={this.props.workout_min} workout_ozf={this.props.workout_ozf} fetchLeaderboard={this.fetchLeaderboard} rounds={this.props.workout.rounds} workout_moves={this.props.workout_moves} workoutVideo={this.state.workoutVideoUrl} changeVideo={this.changeVideo} />
+                   <WorkoutMoves workout={this.props.workout} workout_min={this.props.workout_min} workout_ozf={this.props.workout_ozf} fetchLeaderboard={this.fetchLeaderboard} rounds={this.props.workout.rounds} workout_moves={this.props.workout_moves} workoutVideo={this.state.workoutVideoUrl} changeVideo={this.changeVideo} />
                  </div>
                </div>
                <div className='col s12 m6'>

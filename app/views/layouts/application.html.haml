@@ -28,15 +28,15 @@
           %i.material-icons menu
         %ul.right.hide-on-med-and-down
           - if user_signed_in?
-            %li
+            %li{class: active_class('dashboard')}
               = link_to 'Today', root_path, class: 'ozone-text'
-            %li
+            %li{class: active_class('trainers')}
               = link_to 'Trainers', trainers_path, class: 'ozone-text'
-            %li
+            %li{class: active_class('leaderboards')}
               = link_to 'Leaderboards', leaders_path, class: 'ozone-text'
-            %li
+            %li{class: active_class('nutrition')}
               = link_to 'Nutrition', nutrition_index_path, class: 'ozone-text'
-            %li
+            %li{class: active_class('ozone_challenge/show')}
               = link_to 'O.Zone Challenge', challenge_path, class: 'ozone-text'
             %li
               %a.dropdown-button.ozone-text{href: "#!", data: {activates:"dropdown1"}}
@@ -45,15 +45,15 @@
                   arrow_drop_down
         %ul#mobile-demo.side-nav
           - if user_signed_in?
-            %li
+            %li{class: active_class('dashboard')}
               = link_to 'Today', root_path, class: 'ozone-text'
-            %li
+            %li{class: active_class('trainers')}
               = link_to 'Trainers', trainers_path, class: 'ozone-text'
-            %li
+            %li{class: active_class('leaderboards')}
               = link_to 'Leaderboards', leaders_path, class: 'ozone-text'
-            %li
+            %li{class: active_class('nutrition')}
               = link_to 'Nutrition', nutrition_index_path, class: 'ozone-text'
-            %li
+            %li{class: active_class('ozone_challenge/show')}
               = link_to 'O.Zone Challenge', challenge_path, class: 'ozone-text'
             - if current_user.admin && params[:controller] != 'admin'
               %li

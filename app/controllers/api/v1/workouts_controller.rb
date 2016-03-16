@@ -40,7 +40,7 @@ class Api::V1::WorkoutsController < ApiController
     end
 
     def workout_params
-      params.require(:workout).permit(:min_time, :ozf_time, :rounds)
+      params.require(:workout).permit(:min_time, :ozf_time, :rounds, :notes, :name)
     end
 
     def parse_time

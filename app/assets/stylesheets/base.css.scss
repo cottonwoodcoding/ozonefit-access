@@ -10,7 +10,8 @@ html {
   background-size: cover;
   background-repeat:no-repeat;
   min-height: 100%;
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  // font-family: 'Black Ops One', cursive;
+  font-family: 'Allerta Stencil', sans-serif;
   background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 14%, rgba(0,157,220,1) 89%, rgba(0,157,220,1) 99%, rgba(0,157,220,1) 100%);
   background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(14%, rgba(255,255,255,1)), color-stop(89%, rgba(0,157,220,1)), color-stop(99%, rgba(0,157,220,1)), color-stop(99%, rgba(0,157,220,1)));
   background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 14%, rgba(0,157,220,1) 89%, rgba(0,157,220,1) 99%, rgba(0,157,220,1) 100%);
@@ -120,7 +121,7 @@ html {
   height: 100px;
 }
 
-.card h4 {
+.card h3, h4 {
   margin: 0 0.912rem 0 !important;
   padding-top: 10px;
 }

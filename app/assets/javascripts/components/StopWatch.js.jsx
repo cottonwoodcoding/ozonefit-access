@@ -62,7 +62,7 @@ class StopWatch extends React.Component {
       });
       this.clearWatch();
     } else {
-      alert('You cannot submit a time that is less than the minimum time.');
+      alert('You cannot submit a time that is less than the Minimum Completion Time.');
     }
   }
 

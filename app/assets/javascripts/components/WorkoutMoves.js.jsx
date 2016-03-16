@@ -12,17 +12,31 @@ class WorkoutMoves extends React.Component {
     return workout_moves;
   }
 
+  workoutNotes() {
+    if(this.props.workout.notes) {
+      return(<div>
+               <hr />
+               <h5>Workout Notes</h5>
+               <p className='lead'>
+                 {this.props.workout.notes}
+               </p>
+             </div>);
+    }
+  }
+
   render() {
     let dayInfo = null;
     if(this.props.day)
       dayInfo = this.props.day.name + "'s";
     return(<div>
+             <h3>{this.props.workout.name}</h3>
              <h4>{dayInfo} Rounds To Complete: {this.props.rounds}</h4>
              <h6>Minimum Completion Time: {this.props.workout_min}</h6>
              <h6>OZF Time: {this.props.workout_ozf}</h6>
              <div className='moves-container'>
                {this.display()}
              </div>
+             {this.workoutNotes()}
              <a className='btn ozone-button workout-music-button' href="#" onClick={(e) => this.props.changeVideo(this.props.workoutVideo, e)}>Workout Music</a>
            </div>);
   }

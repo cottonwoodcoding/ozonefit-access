@@ -68,7 +68,7 @@ class Workouts extends React.Component {
     $.ajax({
       url: '/api/v1/days/'+this.props.day.id+'/workouts',
       type: 'POST',
-      data: {workout: {min_time: this.refs.workoutMinTime.value, ozf_time: this.refs.workoutOzfTime.value, rounds: this.refs.rounds.value}, moves: this.state.movesToAdd}
+      data: {workout: {name: this.refs.name.value, min_time: this.refs.workoutMinTime.value, ozf_time: this.refs.workoutOzfTime.value, rounds: this.refs.rounds.value, notes: this.refs.notes.value}, moves: this.state.movesToAdd}
     }).success(data => {
       let workouts = this.state.workouts;
       workouts.push(data);
@@ -142,17 +142,25 @@ class Workouts extends React.Component {
                <form className='col s12' onSubmit={this.addWorkout}>
                  <div className='row'>
                    <div className='input-field col s12'>
-                     <input type='text' ref='workoutMinTime' placeholder='Workout Min Time - 01:30' pattern="\d\d:\d\d" required='true' />
+                     <input type='text' ref='name' placeholder='Workout Name' required='true' />
                    </div>
                  </div>
                  <div className='row'>
-                   <div className='input-field col s12'>
+                   <div className='input-field col s12 m6'>
+                     <input type='text' ref='workoutMinTime' placeholder='Workout Min Time - 01:30' pattern="\d\d:\d\d" required='true' />
+                   </div>
+                   <div className='input-field col s12 m6'>
                      <input type='text' ref='workoutOzfTime' placeholder='Workout Ozf Time - 10:00' pattern="\d\d:\d\d" required='true' />
                    </div>
                  </div>
                  <div className='row'>
                    <div className='input-field col s12'>
                      <input type='number' ref='rounds' min='1' step='1' placeholder='Workout Rounds' required='true' />
+                   </div>
+                 </div>
+                 <div className='row'>
+                   <div className='input-field col s12'>
+                     <textarea className='materialize-textarea' ref='notes' placeholder='Equiptment Needed / Notes'></textarea>
                    </div>
                  </div>
                  <div className='row'>
@@ -178,7 +186,7 @@ class Workouts extends React.Component {
 
   render() {
     if(this.state.loaded) {
-      return(<div className='center'>
+      return(<div className='center container'>
                <h4>{this.props.day.name} Workouts</h4>
                <button type='button' className='btn grey white-text' onClick={this.props.getDays}>Back</button>
                &nbsp;

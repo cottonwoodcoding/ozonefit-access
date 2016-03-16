@@ -61,7 +61,7 @@ class Workout extends React.Component {
       return(<div className="col s12">
                <div className="card blue-grey darken-1">
                  <div className="card-content white-text">
-                   <span className="card-title">Workout</span>
+                   <span className="card-title">{workout.name}</span>
                    <p>Min Time: {this.formatTime(workout.min_time)}</p>
                    <p>Ozf Time: {this.formatTime(workout.ozf_time)}</p>
                    <p>Rounds: {workout.rounds}</p>

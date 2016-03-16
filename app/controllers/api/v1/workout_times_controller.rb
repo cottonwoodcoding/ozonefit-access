@@ -1,6 +1,6 @@
 class Api::V1::WorkoutTimesController < ApiController
   before_action :workout
-  before_action :set_date, only: :create
+  before_action :set_date, :check_initial_challenge, only: :create
 
   def create
     @workout_time = current_user.workout_times.new(workout_time_params)
@@ -35,5 +35,9 @@ class Api::V1::WorkoutTimesController < ApiController
 
     def set_ozf
       @workout_time.ozf = true if params[:workout_time][:time].to_i <= @workout.ozf_time
+    end
+
+    def check_initial_challenge
+      current_user.update(initial_ochallenge_completed: true) if params[:workout_time][:ozone_challenge] == 'true'
     end
 end
