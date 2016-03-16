@@ -17,9 +17,9 @@ class WorkoutMoves extends React.Component {
       return(<div>
                <hr />
                <h5>Workout Notes</h5>
-               <p className='lead'>
+               <textarea className='materialize-textarea center' readOnly>
                  {this.props.workout.notes}
-               </p>
+               </textarea>
              </div>);
     }
   }
