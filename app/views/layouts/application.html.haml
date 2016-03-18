@@ -66,4 +66,6 @@
 
     = render :partial => "shared/bflash"
     #flash-message
-    = yield
+    %main
+      = yield
+    = render(partial: 'layouts/footer')

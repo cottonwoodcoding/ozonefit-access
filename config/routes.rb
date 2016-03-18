@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'trainers', to: 'trainers#index', as: 'trainers'
   get 'leaders', to: 'leaderboards#index', as: 'leaders'
   get 'register', to: 'register#show', as: 'register'
+  get 'policies', to: 'dashboard#policies'
 
   # POST Routes
   post 'lead/create', as: 'leads'

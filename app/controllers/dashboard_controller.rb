@@ -13,6 +13,9 @@ class DashboardController < ApplicationController
     end
   end
 
+  def policies
+  end
+
   private
     def force_ozone_challenge
       unless current_user.admin

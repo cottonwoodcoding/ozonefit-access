@@ -10,4 +10,6 @@
     = csrf_meta_tags
   %body
     = render :partial => "shared/bflash"
-    = yield
+    %main
+      = yield
+    = render(partial: 'layouts/footer')
