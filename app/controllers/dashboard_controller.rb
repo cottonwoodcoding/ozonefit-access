@@ -1,6 +1,7 @@
 class DashboardController < ApplicationController  
   include TimeParser
   before_action :force_ozone_challenge
+  skip_before_action :authenticate_user!, only: :policies
 
   def index
     @video_url = SoundCloud.random
