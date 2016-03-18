@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController  
   include TimeParser
-  before_action :force_ozone_challenge
+  before_action :force_ozone_challenge, only: :index
   skip_before_action :authenticate_user!, only: :policies
 
   def index
