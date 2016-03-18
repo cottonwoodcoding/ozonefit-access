@@ -13,7 +13,7 @@
     %nav.white
       %ul#dropdown1.dropdown-content
         - if user_signed_in?
-          - if current_user.admin && params[:controller] != 'admin'
+          - if current_user.admin || current_user.trainer && params[:controller] != 'admin'
             %li
               = link_to 'Admin', admin_path, class: 'ozone-text'
           - unless params[:controller] == 'profile'
@@ -55,7 +55,7 @@
               = link_to 'Nutrition', nutrition_index_path, class: 'ozone-text'
             %li{class: active_class('ozone_challenge/show')}
               = link_to 'O.Zone Challenge', challenge_path, class: 'ozone-text'
-            - if current_user.admin && params[:controller] != 'admin'
+            - if current_user.admin || current_user.trainer && params[:controller] != 'admin'
               %li
                 = link_to 'Admin', admin_path, class: 'ozone-text'
             - unless params[:controller] == 'profile'

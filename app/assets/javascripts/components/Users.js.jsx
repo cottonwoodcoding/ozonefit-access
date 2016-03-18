@@ -27,11 +27,15 @@ class Users extends React.Component {
 
   addUser(e) {
     e.preventDefault();
-
+    debugger
     $.ajax({
       url: '/api/v1/users',
       type: 'POST',
-      data: {user: {first_name: this.refs.firstName.value.trim(), last_name: this.refs.lastName.value.trim(), email: this.refs.email.value.trim(), phone: this.refs.phone.value.trim()}}
+      data: {user: {first_name: this.refs.firstName.value.trim(), 
+                    last_name: this.refs.lastName.value.trim(), 
+                    email: this.refs.email.value.trim(), 
+                    phone: this.refs.phone.value.trim(),
+                    trainer: this.refs.trainer.checked}}
     }).success(data => {
       let users = this.state.users;
       users.push(data);
@@ -39,6 +43,7 @@ class Users extends React.Component {
       this.refs.lastName.value = '';
       this.refs.email.value = '';
       this.refs.phone.value = '';
+      this.refs.trainer.checked = false;
       this.setState({users: users});
     }).error(data => {
       console.log(data);
@@ -63,12 +68,24 @@ class Users extends React.Component {
       return(<form onSubmit={this.addUser}>
                <div className='input-group'>
                  <input type='text' ref='firstName' placeholder='First Name' required='true' />
+               </div>
+               <div className='input-group'>
                  <input type='text' ref='lastName' placeholder='Last Name' required='true' />
+               </div>
+               <div className='input-group'>
                  <input type='text' ref='email' placeholder='Email' required='true' />
+               </div>
+               <div className='input-group'>
                  <input type='text' ref='phone' placeholder='Phone' required='true' />
-                 <button type='submit' className='btn ozone-button'>Add</button>
+               </div>
+               <div className='input-group'>
+                 <input type="checkbox" id="trainer_check" ref='trainer' />
+                 <label htmlFor="trainer_check">Trainer?</label>
                </div>
                <br />
+               <div className='input-group'>
+                 <button type='submit' className='btn ozone-button'>Add</button>
+               </div>
              </form>);
     }
   }

@@ -38,20 +38,35 @@ class Admin extends React.Component {
   }
 
   render() {
-    return(<div>
-             <ul className="tabs">
-               <Tab callbackValue='users' text='Users' callback={this.tabState} />
-               <Tab callbackValue='motivation' text='Motivation' callback={this.tabState} />
-               <Tab callbackValue='nutrition' text='Nutrition' callback={this.tabState} />
-               <Tab callbackValue='days' text='Workouts' callback={this.tabState} />
-               <Tab callbackValue='moves' text='Moves' callback={this.tabState} />
-               <Tab callbackValue='measurements' text='Measurements' callback={this.tabState} />
-               <Tab callbackValue='soundcloud' text='SoundCloud' callback={this.tabState} />
-             </ul>
-             <div className="col s12 card">
-              <br />
-              {this.display()}
-             </div>
-           </div>);
+    if(this.props.current_user.admin) {
+      return(<div>
+               <ul className="tabs">
+                 <Tab callbackValue='users' text='Users' callback={this.tabState} />
+                 <Tab callbackValue='motivation' text='Motivation' callback={this.tabState} />
+                 <Tab callbackValue='nutrition' text='Nutrition' callback={this.tabState} />
+                 <Tab callbackValue='days' text='Workouts' callback={this.tabState} />
+                 <Tab callbackValue='moves' text='Moves' callback={this.tabState} />
+                 <Tab callbackValue='measurements' text='Measurements' callback={this.tabState} />
+                 <Tab callbackValue='soundcloud' text='SoundCloud' callback={this.tabState} />
+               </ul>
+               <div className="col s12 card">
+                <br />
+                {this.display()}
+               </div>
+             </div>);
+    } else {
+      return(<div>
+               <ul className="tabs">
+                 <Tab callbackValue='motivation' text='Motivation' callback={this.tabState} />
+                 <Tab callbackValue='nutrition' text='Nutrition' callback={this.tabState} />
+                 <Tab callbackValue='measurements' text='Measurements' callback={this.tabState} />
+                 <Tab callbackValue='soundcloud' text='SoundCloud' callback={this.tabState} />
+               </ul>
+               <div className="col s12 card">
+                <br />
+                {this.display()}
+               </div>
+             </div>);
+    }
   }
 }

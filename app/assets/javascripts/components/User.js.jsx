@@ -19,6 +19,7 @@ class User extends React.Component {
                    <span className="card-title truncate">{user.first_name} {user.last_name}</span>
                    <p>{user.email}</p>
                    <p>{user.phone}</p>
+                   <p>Trainer: {user.trainer.toString()}</p>
                  </div>
                </div>
              </div>);
@@ -31,7 +32,11 @@ class User extends React.Component {
     $.ajax({
       url: this.state.user.url,
       type: 'PUT',
-      data: {user: {first_name: this.refs.firstName.value.trim(), last_name: this.refs.lastName.value.trim(), email: this.refs.email.value.trim(), phone: this.refs.phone.value.trim()}}
+      data: {user: {first_name: this.refs.firstName.value.trim(), 
+                    last_name: this.refs.lastName.value.trim(), 
+                    email: this.refs.email.value.trim(), 
+                    phone: this.refs.phone.value.trim(),
+                    trainer: this.refs.trainer.checked}}
     }).success(data => {
       this.setState({edit: false, user: data});
     }).error(data => {
@@ -84,7 +89,7 @@ class User extends React.Component {
   editView() {
     if(this.state.edit) {
       let user = this.state.user;
-
+      let trainerId = `trainer-${user.id}`;
       return(<div className="col s12 m4">
                <form onSubmit={this.editUser}>
                  <div className="card blue-grey darken-1">
@@ -100,6 +105,10 @@ class User extends React.Component {
                      </p>
                      <p>
                        <input type='text' required='true' defaultValue={user.phone} ref='phone' />
+                     </p>
+                     <p>
+                       <input type="checkbox" id={trainerId} ref='trainer' defaultChecked={user.trainer} />
+                       <label htmlFor={trainerId} className='white-text'>Trainer?</label>
                      </p>
                    </div>
                    <div className='card-action'>

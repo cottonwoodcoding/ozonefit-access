@@ -12,7 +12,7 @@ class AdminController < ApplicationController
 
   private
     def authorize
-      unless current_user.admin
+      unless current_user.admin || current_user.trainer
         flash[:error] = "You are not authorized to view that page."
         redirect_to root_path
       end
