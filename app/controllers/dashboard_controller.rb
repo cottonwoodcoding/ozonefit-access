@@ -19,7 +19,7 @@ class DashboardController < ApplicationController
 
   private
     def force_ozone_challenge
-      unless current_user.admin
+      unless current_user.admin || current_user.trainer
         unless current_user.initial_ochallenge_completed
           flash[:error] = 'You need to complete an initial O.Zone Challenge!'
           redirect_to(challenge_path) and return
