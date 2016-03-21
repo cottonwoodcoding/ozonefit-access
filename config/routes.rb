@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   # Devise Routes (User Auth)
-  devise_for :users
+  devise_for :users, controllers: {
+    sessions: 'users/sessions'
+  }
 
   # GET Routes
   get 'dashboard/index', as: 'dashboard'

@@ -3,7 +3,7 @@ class Api::V1::MeasurementsController < ApiController
   before_action :measurement, except: [:index, :create]
 
   def index
-    @measurements = @user.measurements
+    @measurements = @user.measurements.order(:created_at)
   end
 
   def create

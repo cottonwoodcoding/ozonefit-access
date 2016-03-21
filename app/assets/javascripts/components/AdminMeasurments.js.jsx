@@ -1,11 +1,13 @@
 class AdminMeasurements extends React.Component {
   constructor(props){
     super(props);
-    this.state = {loaded: false};
+    this.state = {loaded: false, add: false, edit: false};
     this.userOptions = this.userOptions.bind(this);
     this.setUser = this.setUser.bind(this);
     this.measurementForm = this.measurementForm.bind(this);
     this.submitMeasurement = this.submitMeasurement.bind(this);
+    this.measurementActions = this.measurementActions.bind(this);
+    this.editMeasurements = this.editMeasurements.bind(this);
   }
 
   componentDidMount() {
@@ -29,7 +31,7 @@ class AdminMeasurements extends React.Component {
   }
 
   setUser(userId) {
-    this.setState({measurementUser: userId})
+    this.setState({add: false, edit: false, measurementUser: userId});
   }
 
   submitMeasurement(e) {
@@ -46,14 +48,21 @@ class AdminMeasurements extends React.Component {
                            notes: this.refs.notes.value}}
     }).success(data => {
       this.refs.userSelect.selectedIndex = 0;
-      this.setState({measurementUser: null, alert: 'Measurement Added Successfully'});
+      this.setState({measurementUser: null, edit: false, add: false, alert: 'Measurement Added Successfully'});
     }).error(data => {
       console.log(data);
     });
   }
 
+  editMeasurements() {
+    if(this.state.edit) {
+      let userObject = {id: this.state.measurementUser}
+      return(<Measurements user={userObject} editable={true} />);
+    }
+  }
+
   measurementForm() {
-    if(this.state.measurementUser){
+    if(this.state.add){
       return(<form onSubmit={this.submitMeasurement}>
                <div className='row'>
                  <div className='input-field'>
@@ -107,6 +116,15 @@ class AdminMeasurements extends React.Component {
     }
   }
 
+  measurementActions() {
+    if(this.state.measurementUser){
+      return(<div className='center pad-bottom-20 '>
+               <button className='btn' onClick={() => this.setState({add: true, edit: false})}>Add Measurments</button>
+               <button className='btn' onClick={() => this.setState({add: false, edit: true})}>Edit Measurments</button>
+             </div>);
+    }
+  }
+
   alert() {
     if(this.state.alert) {
       return(<div className='center green white-text'>
@@ -124,7 +142,9 @@ class AdminMeasurements extends React.Component {
                  <option value=''>-- User</option>
                  {this.userOptions()}
                </select>
+               {this.measurementActions()}
                {this.measurementForm()}
+               {this.editMeasurements()}
              </div>);
     } else {
       return(<h5 className='center'>Loading...</h5>);

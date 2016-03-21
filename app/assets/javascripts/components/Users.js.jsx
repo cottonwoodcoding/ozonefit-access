@@ -27,7 +27,6 @@ class Users extends React.Component {
 
   addUser(e) {
     e.preventDefault();
-    debugger
     $.ajax({
       url: '/api/v1/users',
       type: 'POST',

@@ -3,9 +3,14 @@ class Measurements extends React.Component{
     super(props);
     this.state = {measurements: [], loaded: false};
     this.renderMeasurements = this.renderMeasurements.bind(this);
+    this.fetchMeasurments = this.fetchMeasurments.bind(this);
   }
 
   componentDidMount() {
+    this.fetchMeasurments();
+  }
+
+  fetchMeasurments() {
     $.ajax({
       url: '/api/v1/users/'+this.props.user.id+'/measurements',
       type: 'GET'
@@ -19,7 +24,7 @@ class Measurements extends React.Component{
   renderMeasurements() {
     let measurements = this.state.measurements.map(measurement => {
       let key = `measurment-${measurement.id}`;
-      return(<Measurement key={key} measurement={measurement} />);
+      return(<Measurement fetchMeasurments={this.fetchMeasurments} key={key} measurement={measurement} editable={this.props.editable} />);
     });
     return measurements;
   }
@@ -41,6 +46,7 @@ class Measurements extends React.Component{
               <th>Left Calf</th>
               <th>Chest</th>
               <th>Neck</th>
+              <th>Notes</th>
             </tr>
           </thead>
           <tbody>
@@ -50,7 +56,7 @@ class Measurements extends React.Component{
         </div>
       );
     else if(this.state.loaded && this.state.measurements.length == 0)
-      return(<h3 className="center">No Measurements Yet, Keep Working Hard!</h3>);
+      return(<h3 className="center">No Measurements Yet.</h3>);
     else
       return(<h3 className='center'>Loading</h3>);
   }

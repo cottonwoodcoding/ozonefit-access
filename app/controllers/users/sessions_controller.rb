@@ -7,9 +7,15 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    if user = User.find_by(email: params[:user][:email])
+      if user.workflow_state != 'active'
+        flash[:error] = 'You are not an active user. Please contact info@ozonefit.com'
+        redirect_to(root_path) and return
+      end
+    end
+    super
+  end
 
   # DELETE /resource/sign_out
   # def destroy
