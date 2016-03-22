@@ -2,7 +2,7 @@ class Api::V1::LeaderboardController < ApiController
   def index
     leaders = []
     if params.has_key?(:ozone_challenge)
-      top_workout_times = WorkoutTime.where(date: Date.today, ozone_challenge: true).order(:time)
+      top_workout_times = WorkoutTime.where(ozone_challenge: true).order(:time).limit(10)
     else
       top_workout_times = WorkoutTime.where(date: Date.today, ozone_challenge: false).order(:time).limit(5)
     end
