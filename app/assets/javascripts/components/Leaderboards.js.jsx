@@ -18,7 +18,7 @@ class Leaderboards extends React.Component {
 
   showParticipants() {
     let participants = this.state.participants.map(participant => {
-      return({id: participant.user.id, name: `${participant.user.first_name} ${participant.user.last_name}`, time: participant.workout_time.time, ozf: this.titleize(participant.workout_time.ozf), profile_url: participant.avatar_url });
+      return({id: participant.user.id, name: `${participant.user.first_name} ${participant.user.last_name}`, time: participant.workout_time, ozf: this.titleize(participant.ozf), profile_url: participant.avatar_url });
     });
     return(<Leaderboard leaders={participants} title={this.state.leaderboardTitle} />);
 

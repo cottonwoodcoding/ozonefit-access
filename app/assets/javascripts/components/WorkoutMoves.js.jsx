@@ -34,6 +34,13 @@ class WorkoutMoves extends React.Component {
              <h6>Minimum Completion Time: {this.props.workout_min}</h6>
              <h6>OZF Time: {this.props.workout_ozf}</h6>
              <div className='moves-container'>
+               <div className='row'>
+                 <div className='col s6'>
+                   <small className='red-text'>
+                     <i><strong>Click Move To Watch Video</strong></i>
+                   </small>
+                 </div>
+               </div>
                {this.display()}
              </div>
              {this.workoutNotes()}
