@@ -41,6 +41,8 @@ gem 'sendgrid'
 
 gem 'momentjs-rails'
 
+gem 'google-analytics-rails', '1.1.0'
+
 group :development do 
   gem "letter_opener"
   gem "bullet"
