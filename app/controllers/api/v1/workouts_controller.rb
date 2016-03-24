@@ -22,6 +22,7 @@ class Api::V1::WorkoutsController < ApiController
   end
 
   def update
+    @workout = Workout.find(params[:id])
     if @workout.update(workout_params)
       render :workout
     else

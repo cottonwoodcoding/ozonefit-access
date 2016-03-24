@@ -188,6 +188,7 @@ class Workouts extends React.Component {
     if(this.state.loaded) {
       return(<div className='center container'>
                <h4>{this.props.day.name} Workouts</h4>
+               <br />
                <button type='button' className='btn grey white-text' onClick={this.props.getDays}>Back</button>
                &nbsp;
                {this.addWorkoutButton()}
