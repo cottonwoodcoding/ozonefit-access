@@ -6,7 +6,7 @@ class LeaderboardContainer extends React.Component {
   render() {
     let formattedDate = moment(this.props.date).format('dddd, MMMM Do');
     return(<div>
-             <div className='col s4 pointer' onClick={() => this.props.toggleParticipants(formattedDate, this.props.workoutTimes)}>
+             <div className='col s12 m4 pointer' onClick={() => this.props.toggleParticipants(formattedDate, this.props.workoutTimes)}>
                <div className='card'>
                  <div className='valign-wrapper leaderboard-container'>
                    <h4 className='ozone-text valign center-container'>{formattedDate}</h4>
