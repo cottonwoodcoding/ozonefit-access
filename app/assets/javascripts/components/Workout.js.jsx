@@ -138,6 +138,16 @@ class Workout extends React.Component {
     }
   }
 
+  displayNotes(notes) {
+    if(notes) {
+      return(<p className='center'>
+               Notes:
+               <br />
+               {notes}
+             </p>)
+    }
+  }
+
   displayView() {
     if(!this.state.edit) {
       let workout = this.state.workout;
@@ -150,10 +160,9 @@ class Workout extends React.Component {
                    <p>Ozf Time: {this.formatTime(workout.ozf_time)}</p>
                    <p>Rounds: {workout.rounds}</p>
                    <p>Number of Moves: {workout.workout_moves.length}</p>
-                   <p>
-                     Notes: 
-                     <textarea className='materialize-textarea center' value={workout.notes}></textarea>
-                   </p>
+                   <div>
+                     {this.displayNotes(workout.notes)}
+                   </div>
                    <div className='row'>
                      <div className='col s6'>
                        <h4>Move</h4>
