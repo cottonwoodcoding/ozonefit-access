@@ -56,9 +56,9 @@ class Workout extends React.Component {
   }
 
   displayMoves(workout, edit) {
-    let moves = workout.workout_moves.map(workoutMove => {
+    let moves = workout.workout_moves.map( (workoutMove, index) => {
       let colClass = 'col s6';
-      return(<div key={workout.id} className='row'>
+      return(<div key={`workout-move-${index}`} className='row'>
                <div className={colClass}>
                  {workoutMove.name}
                </div>
