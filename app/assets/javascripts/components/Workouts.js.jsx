@@ -41,7 +41,7 @@ class Workouts extends React.Component {
     if(this.state.workouts.length) {
       let workouts = this.state.workouts.map(workout => {
         let key = `workout-${workout.id}`;
-        return(<Workout day={this.props.day} key={key} workout={workout} deleteWorkout={this.deleteWorkout} getDays={this.props.getDays} />);
+        return(<Workout moves={this.state.moves} day={this.props.day} key={key} workout={workout} deleteWorkout={this.deleteWorkout} getDays={this.props.getDays} />);
       });
       return workouts;
     } else {
@@ -51,15 +51,18 @@ class Workouts extends React.Component {
 
   deleteWorkout(e, url) {
     e.preventDefault();
+    let confirmDelete = confirm('Really delete the workout?')
 
-    $.ajax({
-      url: url,
-      type: 'DELETE'
-    }).success(data => {
-      this.getWorkouts();
-    }).error(data => {
-      console.log(data);
-    });
+    if(confirmDelete) {
+      $.ajax({
+        url: url,
+        type: 'DELETE'
+      }).success(data => {
+        this.getWorkouts();
+      }).error(data => {
+        console.log(data);
+      });
+    }
   }
 
   addWorkout(e) {

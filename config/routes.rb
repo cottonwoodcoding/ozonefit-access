@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'register/show'
-
   # Root Route
   root 'welcome#index'
 

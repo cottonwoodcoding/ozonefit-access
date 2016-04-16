@@ -8,6 +8,9 @@ class Workout extends React.Component {
     this.toggleEdit = this.toggleEdit.bind(this);
     this.editView = this.editView.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
+    this.workoutHeaders = this.workoutHeaders.bind(this);
+    this.removeMove = this.removeMove.bind(this);
+    this.addMove = this.addMove.bind(this);
   }
 
   formatTime(time) {
@@ -55,16 +58,34 @@ class Workout extends React.Component {
     }
   }
 
-  displayMoves(workout, edit) {
+  removeMove(e, moveIndex) {
+    e.preventDefault();
+    $.ajax({
+      url: this.state.workout.url,
+      type: 'PUT',
+      data: {id: this.state.workout.id,
+             workout: this.state.workout,
+             move_index: moveIndex}
+    }).done(data => {
+      this.setState({workout: data});
+    }).fail(data => {
+      console.log(data);
+    });
+  }
+
+  displayMoves(workout) {
+    let edit = this.state.edit;
     let moves = workout.workout_moves.map( (workoutMove, index) => {
-      let colClass = 'col s6';
+      let colClass = edit ? 'col s4' : 'col s6';
+      let removeButton = edit ? <div className={colClass}><a href='#' className='btn red' onClick={(e) => this.removeMove(e, index)}>Remove</a></div> : '';
       return(<div key={`workout-move-${index}`} className='row'>
                <div className={colClass}>
                  {workoutMove.name}
                </div>
-               <div className={colClass}>
+               <div className={`${colClass} hide-on-small-only`}>
                  {workoutMove.reps}
                </div>
+               {removeButton}
              </div>);
     });
     return moves;
@@ -90,9 +111,65 @@ class Workout extends React.Component {
     });
   }
 
+  workoutHeaders() {
+    if(this.state.workout.workout_moves.length) {
+      let colClass = this.state.edit ? 'col s4' : 'col s6';
+      if(this.state.edit) {
+        return(<div>
+                 <div className={colClass}>
+                   <h4>Move</h4>
+                 </div>
+                 <div className={`${colClass} hide-on-small-only`}>
+                   <h4>Reps</h4>
+                 </div>
+                 <div className={colClass}>
+                   <h4>Actions</h4>
+                 </div>
+               </div>);
+      } else {
+        return(<div>
+                 <div className={colClass}>
+                   <h4>Move</h4>
+                 </div>
+                 <div className={colClass}>
+                   <h4>Reps</h4>
+                 </div>
+               </div>);
+      }
+    }
+  }
+
+  addMove() {
+    let selectedMove = this.refs.selectedMove.value.split('-');
+    let reps = this.refs.reps.value.trim();
+    if(reps.length) {
+      $.ajax({
+        url: this.state.workout.url,
+        type: 'PUT',
+        data: {id: this.state.workout.id, 
+               workout: this.state.workout,
+               workout_move: {id: selectedMove[0], 
+                              name: selectedMove[1],
+                              reps: reps}}
+      }).done(data => {
+        this.refs.reps.value = '';
+        this.setState({workout: data});
+      }).fail(data => {
+        console.log(data);
+      });
+    } else {
+      alert('You have to add reps to a move!');
+    }
+  }
+
   editView() {
     if(this.state.edit) {
       let workout = this.state.workout;
+       let moveOptions = this.props.moves.map(move => {
+         let key = `move-option-${move.id}`;
+         let moveValue = `${move.id}-${move.name}`;
+         return(<option key={key} value={moveValue} >{move.name}</option>);
+      }).filter(function(n){ return n != undefined }); ;
 
       return(<div className='col s12'>
                <form onSubmit={this.handleEdit}>
@@ -119,14 +196,14 @@ class Workout extends React.Component {
                        <textarea defaultValue={workout.notes} ref='workoutNotes' className='materialize-textarea'></textarea>
                      </p>
                      <div className='row'>
-                       <div className='col s6'>
-                         <h4>Move</h4>
-                       </div>
-                       <div className='col s6'>
-                         <h4>Reps</h4>
-                       </div>
+                       {this.workoutHeaders()}
                      </div>
-                     {this.displayMoves(workout, true)}
+                     {this.displayMoves(workout)}
+                     <select className='browser-default col s12 m6 black-text' ref='selectedMove'>
+                       {moveOptions}
+                     </select>
+                     <input className='col s12 m6' type='text' placeholder='Reps' ref='reps' />
+                     <button type='button' className='btn ozone-button' onClick={this.addMove}>Add Move</button>
                    </div>
                    <div className="card-action">
                      <a className='btn grey bottom-20' href='#' onClick={this.toggleEdit}>Cancel</a>
@@ -164,12 +241,7 @@ class Workout extends React.Component {
                      {this.displayNotes(workout.notes)}
                    </div>
                    <div className='row'>
-                     <div className='col s6'>
-                       <h4>Move</h4>
-                     </div>
-                     <div className='col s6'>
-                       <h4>Reps</h4>
-                     </div>
+                     {this.workoutHeaders()}
                    </div>
                    {this.displayMoves(workout)}
                  </div>

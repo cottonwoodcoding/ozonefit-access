@@ -1,7 +1,7 @@
 class Dashboard extends React.Component {
   constructor(props){
     super(props);
-    this.state = {leaders: [], videoUrl: this.props.videoUrl, workoutVideoUrl: this.props.videoUrl};
+    this.state = {workoutClicked: false, leaders: [], videoUrl: this.props.videoUrl, workoutVideoUrl: this.props.videoUrl};
     this.fetchLeaderboard = this.fetchLeaderboard.bind(this);
     this.changeVideo = this.changeVideo.bind(this);
     this.leaderboardTitle = this.leaderboardTitle.bind(this);
@@ -11,11 +11,11 @@ class Dashboard extends React.Component {
     this.fetchLeaderboard();
   }
 
-  changeVideo(url, e = null) {
+  changeVideo(url, e = null, workoutMusic=true) {
     if(e){
       e.preventDefault();
     }
-    this.setState({videoUrl: url});
+    this.setState({videoUrl: url, workoutClicked: workoutMusic});
   }
 
   fetchLeaderboard() {
@@ -51,7 +51,7 @@ class Dashboard extends React.Component {
              <div className='row center'>
                <div className='col s12 m6 center'>
                  <div className='card workout-moves'>
-                   <WorkoutMoves workout={this.props.workout} workout_min={this.props.workout_min} workout_ozf={this.props.workout_ozf} fetchLeaderboard={this.fetchLeaderboard} rounds={this.props.workout.rounds} workout_moves={this.props.workout_moves} workoutVideo={this.state.workoutVideoUrl} changeVideo={this.changeVideo} />
+                   <WorkoutMoves workoutClicked={this.state.workoutClicked} workout={this.props.workout} workout_min={this.props.workout_min} workout_ozf={this.props.workout_ozf} fetchLeaderboard={this.fetchLeaderboard} rounds={this.props.workout.rounds} workout_moves={this.props.workout_moves} workoutVideo={this.state.workoutVideoUrl} changeVideo={this.changeVideo} />
                  </div>
                </div>
                <div className='col s12 m6'>

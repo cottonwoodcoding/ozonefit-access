@@ -26,13 +26,14 @@ class WorkoutMoves extends React.Component {
 
   render() {
     let dayInfo = null;
+    let workoutMusicButton = this.props.workoutClicked ? <a className='btn ozone-button workout-music-button' href="#" onClick={(e) => this.props.changeVideo(this.props.workoutVideo, e, false)}>Workout Music</a> : '';
     if(this.props.day)
       dayInfo = this.props.day.name + "'s";
     return(<div>
              <h3>{this.props.workout.name}</h3>
              <h4>{dayInfo} Rounds To Complete: {this.props.rounds}</h4>
              <h6>Minimum Completion Time: {this.props.workout_min}</h6>
-             <h6>OZF Time: {this.props.workout_ozf}</h6>
+             <h6>OZF If Time Is Between: {this.props.workout_min} - {this.props.workout_ozf}</h6>
              <div className='moves-container'>
                <div className='row'>
                  <div className='col s6'>
@@ -44,7 +45,7 @@ class WorkoutMoves extends React.Component {
                {this.display()}
              </div>
              {this.workoutNotes()}
-             <a className='btn ozone-button workout-music-button' href="#" onClick={(e) => this.props.changeVideo(this.props.workoutVideo, e)}>Workout Music</a>
+             {workoutMusicButton}
            </div>);
   }
 }
