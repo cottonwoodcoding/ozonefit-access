@@ -10,6 +10,16 @@ class AdminController < ApplicationController
     @moves = Move.all
   end
 
+  def send_password_resets
+  end
+
+  def generate_new_password_email
+    user = User.find(params[:format]) 
+    user.send_reset_password_instructions 
+    flash[:notice] = "Reset password instructions have been sent to #{user.email}." 
+    redirect_to send_password_resets_path
+  end
+
   private
     def authorize
       unless current_user.admin || current_user.trainer

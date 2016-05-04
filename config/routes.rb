@@ -17,9 +17,11 @@ Rails.application.routes.draw do
   get 'leaders', to: 'leaderboards#index', as: 'leaders'
   get 'register', to: 'register#show', as: 'register'
   get 'policies', to: 'dashboard#policies'
+  get 'send_password_resets', to: 'admin#send_password_resets'
 
   # POST Routes
   post 'lead/create', as: 'leads'
+  post 'generate_new_password_email', to: 'admin#generate_new_password_email'
 
   # V1 API
   namespace :api do

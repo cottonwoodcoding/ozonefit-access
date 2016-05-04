@@ -35,6 +35,10 @@ class User < ActiveRecord::Base
     ActionController::Base.helpers.number_to_currency(User.where('admin = ? and trainer = ? and workflow_state = ?', false, false, 'active').count * 8.99)
   end
 
+  def self.by_name
+    order(:first_name)
+  end
+
   private
     def create_profile
       self.profile = Profile.create

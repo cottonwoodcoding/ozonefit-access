@@ -1,5 +1,6 @@
 %div{:class => "center-align"}
   %h3 Admin Actions
   %a{:class => "btn ozone-button", :href => "/"} Dashboard
+  %a{:class => "btn red", :href => "/send_password_resets"} Password Resets
   %hr/
 = react_component('Admin', {current_user: current_user, revenue: @revenue})
