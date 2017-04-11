@@ -12,14 +12,14 @@ class User extends React.Component {
   displayView() {
     if(!this.state.edit) {
       let user = this.state.user;
-
       return(<div className="col s12 m4" onClick={() => this.setState({edit: !this.state.edit})}>
-               <div className="card blue-grey darken-1" style={{ height: '150px' }}>
+               <div className="card blue-grey darken-1" style={{ height: '200px' }}>
                  <div className="card-content white-text">
                    <span className="card-title truncate">{user.first_name} {user.last_name}</span>
                    <p>{user.email}</p>
                    <p>{user.phone}</p>
                    <p>Trainer: {user.trainer.toString()}</p>
+                   <p>Added: { user.created_at }</p>
                  </div>
                </div>
              </div>);

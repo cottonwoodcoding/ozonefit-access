@@ -143,7 +143,7 @@ ActiveRecord::Schema.define(version: 20160318205722) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "workout_times", force: :cascade do |t|
-    t.date     "date",            default: '2016-03-15', null: false
+    t.date     "date",            default: '2017-04-11', null: false
     t.float    "time",            default: 0.0,          null: false
     t.integer  "user_id"
     t.datetime "created_at",                             null: false
